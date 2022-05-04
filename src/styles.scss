@@ -1,1 +1,41 @@
 /* You can add global styles to this file, and also import other style files */
+
+// @import '@angular/material/prebuilt-themes/purple-green.css';
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.alb-flex {
+  display: flex;
+  flex-direction: column;
+}
+.alb-textfield {
+  display: flex;
+  // outline: 1px solid black;
+  align-items: center;
+
+  mat-icon {
+    // flex-grow: 1;
+    min-width: 30px;
+  }
+  mat-form-field {
+    flex-grow: 1;
+  }
+}
+
+.alb-form {
+  max-width: 400px;
+  // min-width: 100px;
+  margin: auto;
+  // margin-top: 5%;
+}
+
+.alb-link {
+  font-weight: bolder;
+  // color: mat-color($primary);
+}

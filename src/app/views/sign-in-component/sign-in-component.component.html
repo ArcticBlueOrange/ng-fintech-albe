@@ -1,0 +1,47 @@
+<mat-card class="alb-form ">
+  <form #f="ngForm" (ngSubmit)="onSubmit()"
+  class="alb-flex"
+  >
+    <div class="alb-textfield">
+      <mat-icon>account_circle</mat-icon>
+      <mat-form-field >
+        <input
+          matInput
+          email="true"
+          ngModel
+          name="user"
+          required
+          placeholder="Email">
+      </mat-form-field>
+    </div>
+
+    <div class="alb-textfield">
+      <mat-icon>lock</mat-icon>
+      <mat-form-field >
+        <input
+          matInput
+          [type]="pswVisible ? 'text' : 'password'"
+          ngModel
+          name="pass"
+          required
+          placeholder="Password">
+      </mat-form-field>
+      <mat-icon (click)="pswVisible = !pswVisible">{{pswVisible ? 'visibility_on' : 'visibility_off'}}</mat-icon>
+      <!-- TODO MAKE THE EYE ICON OVERLAYING -->
+    </div>
+
+      <button
+        mat-raised-button
+        color="primary"
+        [disabled]="f?.invalid"
+        type="submit">Accedi</button>
+
+      <p>
+      <a
+        class="alb-link"
+        href="#"
+        (click)="changeStatus.emit()"
+        >Crea un Nuovo Account</a>
+      </p>
+  </form>
+</mat-card>

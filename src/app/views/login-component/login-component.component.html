@@ -1,0 +1,10 @@
+<mat-card *ngIf="islogging">
+  <alb-sign-in-component
+  (changeStatus)="this.islogging=false">
+</alb-sign-in-component>
+</mat-card>
+<mat-card *ngIf="!islogging">
+  <alb-register-component
+  (changeStatus)="this.islogging=true">
+  </alb-register-component>
+</mat-card>

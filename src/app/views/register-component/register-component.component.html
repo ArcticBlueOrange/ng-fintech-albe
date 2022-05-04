@@ -1,0 +1,95 @@
+
+<mat-card class="alb-form">
+  <form #f="ngForm" (ngSubmit)="onSubmit()"
+    class="alb-flex"
+    >
+    <div class="alb-textfield">
+      <!-- <mat-icon>account_circle</mat-icon> -->
+      <mat-form-field >
+        <input
+          matInput
+          ngModel
+          email="true"
+          name="email"
+          required
+          placeholder="Email">
+      </mat-form-field>
+    </div>
+
+
+    <div class="alb-textfield">
+      <!-- <mat-icon>account_circle</mat-icon> -->
+      <mat-form-field >
+        <input
+          matInput
+          ngModel
+          name="name"
+          required
+          placeholder="Name">
+      </mat-form-field>
+    </div>
+
+
+    <div class="alb-textfield">
+      <!-- <mat-icon>account_circle</mat-icon> -->
+      <mat-form-field >
+        <input
+          matInput
+          ngModel
+          name="surname"
+          required
+          placeholder="Surname">
+      </mat-form-field>
+    </div>
+
+      <!-- doppio campo psw -->
+    <div class="alb-textfield">
+      <!-- <mat-icon>lock</mat-icon> -->
+      <mat-form-field >
+        <input
+          matInput
+          [type]="pswVisible ? 'text' : 'password'"
+          [(ngModel)]="psw"
+          #pswRef="ngModel"
+          name="pass"
+          required
+          placeholder="Password">
+      </mat-form-field>
+      <mat-icon (click)="pswVisible = !pswVisible">{{pswVisible ? 'visibility_on' : 'visibility_off'}}</mat-icon>
+      <!-- TODO MAKE THE EYE ICON OVERLAYING -->
+    </div>
+    <div class="alb-textfield">
+      <!-- <mat-icon>lock</mat-icon> -->
+      <mat-form-field >
+        <input
+          matInput
+          [type]="pswVisible ? 'text' : 'password'"
+          [(ngModel)]="psw2"
+          #psw2Ref="ngModel"
+          name="cpass"
+          required
+          placeholder="Repeat Password">
+      </mat-form-field>
+      <mat-icon (click)="pswVisible = !pswVisible">{{pswVisible ? 'visibility_on' : 'visibility_off'}}</mat-icon>
+      <!-- TODO MAKE THE EYE ICON OVERLAYING -->
+      <!-- TODO PSW MUST MATCH -->
+      <!-- TODO MINIMAL PSWD REQUIREMENTS -->
+    </div>
+    <button
+        mat-raised-button
+        color="primary"
+        [disabled]="f?.invalid"
+        type="submit">Registrati</button>
+      <p>
+        <a
+          href="#"
+          class="alb-link"
+          (click)="changeStatus.emit()"
+          >Già registrato? Accedi
+      </a>
+      </p>
+
+  </form>
+
+</mat-card>
+
