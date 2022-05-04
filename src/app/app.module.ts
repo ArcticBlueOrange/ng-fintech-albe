@@ -6,16 +6,18 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './shared/material/material.module';
-import { SignInComponentComponent } from './views/sign-in-component/sign-in-component.component';
-import { RegisterComponentComponent } from './views/register-component/register-component.component';
-import { LoginComponentComponent } from './views/login-component/login-component.component';
+import { SignInComponent } from './views/sign-in/sign-in.component';
+import { RegisterComponent } from './views/register/register.component';
+import { LoginComponent } from './views/login/login.component';
+import { CardComponent } from './shared/card/card.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SignInComponentComponent,
-    RegisterComponentComponent,
-    LoginComponentComponent
+    SignInComponent,
+    RegisterComponent,
+    LoginComponent,
+    CardComponent
   ],
   imports: [
     BrowserModule,

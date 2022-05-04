@@ -3,11 +3,11 @@ import { NgForm, NgModel } from '@angular/forms';
 
 @Component({
   selector: 'alb-register-component',
-  templateUrl: './register-component.component.html',
+  templateUrl: './register.component.html',
   styles: [
   ]
 })
-export class RegisterComponentComponent implements OnInit {
+export class RegisterComponent implements OnInit {
 
   // TODO MOLTO SIMILE AL COMP. SIGN-IN
   // UNIRE?

@@ -3,12 +3,12 @@ import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'alb-sign-in-component',
-  templateUrl: './sign-in-component.component.html',
+  templateUrl: './sign-in.component.html',
   styles: [`
   `
   ]
 })
-export class SignInComponentComponent implements OnInit {
+export class SignInComponent implements OnInit {
 
   @ViewChild('f') form: NgForm | null = null;
   @Output() changeStatus = new EventEmitter<null>();

@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'alb-login-component',
-  templateUrl: './login-component.component.html',
+  templateUrl: './login.component.html',
   styles: [
   ]
 })
-export class LoginComponentComponent implements OnInit {
+export class LoginComponent implements OnInit {
 
   islogging: boolean = true;
 
