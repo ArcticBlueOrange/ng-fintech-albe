@@ -13,6 +13,8 @@ body {
 .alb-flex {
   display: flex;
   flex-direction: column;
+  align-items: stretch;
+
 }
 .alb-textfield {
   display: flex;
@@ -24,6 +26,9 @@ body {
     min-width: 30px;
   }
   mat-form-field {
+    flex-grow: 1;
+  }
+  .main {
     flex-grow: 1;
   }
 }
@@ -38,4 +43,8 @@ body {
 .alb-link {
   font-weight: bolder;
   // color: mat-color($primary);
+}
+
+.smaller {
+  font-size: small;
 }

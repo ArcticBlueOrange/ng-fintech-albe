@@ -9,7 +9,9 @@ import { MaterialModule } from './shared/material/material.module';
 import { SignInComponent } from './views/sign-in/sign-in.component';
 import { RegisterComponent } from './views/register/register.component';
 import { LoginComponent } from './views/login/login.component';
-import { CardComponent } from './shared/card/card.component';
+import { CardListComponent } from './shared/card/card-list.component';
+import { HttpClientModule } from '@angular/common/http';
+import { CardFormComponent } from './views/card-form/card-form.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,8 @@ import { CardComponent } from './shared/card/card.component';
     SignInComponent,
     RegisterComponent,
     LoginComponent,
-    CardComponent
+    CardListComponent,
+    CardFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -25,6 +28,7 @@ import { CardComponent } from './shared/card/card.component';
     BrowserAnimationsModule,
     MaterialModule,
     FormsModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
