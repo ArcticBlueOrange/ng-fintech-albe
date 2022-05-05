@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, Inject, Output, EventEmitter } from '@ang
 import { NgForm, NgModel } from '@angular/forms';
 
 @Component({
-  selector: 'alb-register-component',
+  selector: 'alb-register',
   templateUrl: './register.component.html',
   styles: [
   ]

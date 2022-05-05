@@ -1,0 +1,94 @@
+<mat-card style="max-width: 700px;margin: auto;">
+  <mat-card-header>Aggiungi Carta</mat-card-header>
+  <br>
+  <mat-card-content>
+
+
+<form
+    #f="ngForm"
+    class="alb-flex"
+    (ngSubmit)="onSubmit()"
+  >
+
+<!-- todo missing form control anche qui -->
+<mat-form-field>
+    <!-- [hideRequiredMarker]="true" -->
+    <!-- [formControl]="typeControl" -->
+    <!-- [errorStateMatcher]="matcher" -->
+  <mat-select
+    placeholder="Card Type"
+    required
+    >
+    <mat-option>--</mat-option>
+    <mat-option *ngFor="let card of cardTypes" [value]="card">
+      {{card.name | titlecase}}
+    </mat-option>
+  </mat-select>
+  <mat-error *ngIf="typeControl.hasError('required')">Please select a card type</mat-error>
+</mat-form-field>
+  <div style="display:flex;
+              flex-direction:row;
+              ">
+  <mat-form-field style="flex-grow: 1;">
+    <input
+    matInput
+    ngModel
+    name="name"
+    required
+    placeholder="Name" >
+  </mat-form-field>
+  <mat-form-field style="flex-grow: 1;">
+    <input
+    matInput
+    ngModel
+    name="surname"
+    required
+    placeholder="Surname"
+    >
+    <br>
+  </mat-form-field>
+  </div>
+  <div style="display:flex;
+              flex-direction:row;
+              ">
+  <mat-form-field style="flex-grow: 40;">
+    <input
+    matInput
+    ngModel
+    name="cardnumber"
+    required
+    placeholder="Card Number"
+    >
+  </mat-form-field>
+  <span></span>
+  <mat-form-field style="flex-grow: 1;">
+    <input
+    matInput
+    ngModel
+    name="cardnumber"
+    required
+    placeholder="Numero di Sicurezza"
+    >
+  </mat-form-field>
+  </div>
+<button
+  mat-raised-button
+  color="primary"
+  value="submit"
+  [disabled]="!f.valid"
+  >
+Aggiungi Carta
+</button>
+<button
+  mat-button
+  color="warn"
+  [disabled]="!f.dirty"
+  (click)="handleAnnulla()"
+  >
+Annulla
+</button>
+
+
+</form>
+
+  </mat-card-content>

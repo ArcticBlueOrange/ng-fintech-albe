@@ -43,9 +43,8 @@
     </div>
 
       <!-- doppio campo psw -->
-    <div class="alb-textfield">
       <!-- <mat-icon>lock</mat-icon> -->
-      <mat-form-field >
+      <mat-form-field  class="alb-textfield">
         <input
           matInput
           [type]="pswVisible ? 'text' : 'password'"
@@ -54,13 +53,10 @@
           name="pass"
           required
           placeholder="Password">
+      <mat-icon matSuffix (click)="pswVisible = !pswVisible">{{pswVisible ? 'visibility_on' : 'visibility_off'}}</mat-icon>
       </mat-form-field>
-      <mat-icon (click)="pswVisible = !pswVisible">{{pswVisible ? 'visibility_on' : 'visibility_off'}}</mat-icon>
-      <!-- TODO MAKE THE EYE ICON OVERLAYING -->
-    </div>
-    <div class="alb-textfield">
       <!-- <mat-icon>lock</mat-icon> -->
-      <mat-form-field >
+      <mat-form-field  class="alb-textfield">
         <input
           matInput
           [type]="pswVisible ? 'text' : 'password'"
@@ -69,12 +65,10 @@
           name="cpass"
           required
           placeholder="Repeat Password">
+      <mat-icon matSuffix (click)="pswVisible = !pswVisible">{{pswVisible ? 'visibility_on' : 'visibility_off'}}</mat-icon>
       </mat-form-field>
-      <mat-icon (click)="pswVisible = !pswVisible">{{pswVisible ? 'visibility_on' : 'visibility_off'}}</mat-icon>
-      <!-- TODO MAKE THE EYE ICON OVERLAYING -->
       <!-- TODO PSW MUST MATCH -->
       <!-- TODO MINIMAL PSWD REQUIREMENTS -->
-    </div>
     <button
         mat-raised-button
         color="primary"
@@ -83,9 +77,10 @@
       <p>
         <a
           href="#"
-          class="alb-link"
           (click)="changeStatus.emit()"
+          color="primary"
           >Già registrato? Accedi
+          <!-- class="alb-link" -->
       </a>
       </p>
 

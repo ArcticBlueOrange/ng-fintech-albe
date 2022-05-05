@@ -2,7 +2,7 @@ import { Component, OnInit, Output, ViewChild, EventEmitter } from '@angular/cor
 import { NgForm } from '@angular/forms';
 
 @Component({
-  selector: 'alb-sign-in-component',
+  selector: 'alb-sign-in',
   templateUrl: './sign-in.component.html',
   styles: [`
   `

@@ -1,10 +1,10 @@
 <mat-card *ngIf="islogging">
-  <alb-sign-in-component
+  <alb-sign-in
   (changeStatus)="this.islogging=false">
-</alb-sign-in-component>
+</alb-sign-in>
 </mat-card>
 <mat-card *ngIf="!islogging">
-  <alb-register-component
+  <alb-register
   (changeStatus)="this.islogging=true">
-  </alb-register-component>
+  </alb-register>
 </mat-card>

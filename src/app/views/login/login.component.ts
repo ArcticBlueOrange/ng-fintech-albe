@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'alb-login-component',
+  selector: 'alb-login',
   templateUrl: './login.component.html',
   styles: [
   ]
