@@ -3,28 +3,26 @@
   <br>
   <mat-card-content>
 
-
 <form
-    #f="ngForm"
     class="alb-flex"
+    [formGroup]="cardForm"
     (ngSubmit)="onSubmit()"
   >
-
 <!-- todo missing form control anche qui -->
-<mat-form-field>
+<mat-form-field style="flex-grow: 1;">
     <!-- [hideRequiredMarker]="true" -->
     <!-- [formControl]="typeControl" -->
     <!-- [errorStateMatcher]="matcher" -->
   <mat-select
     placeholder="Card Type"
-    required
-    >
+    formControlName="type"
+    name="type" >
     <mat-option>--</mat-option>
     <mat-option *ngFor="let card of cardTypes" [value]="card">
-      {{card.name | titlecase}}
+      {{card | titlecase}}
     </mat-option>
   </mat-select>
-  <mat-error *ngIf="typeControl.hasError('required')">Please select a card type</mat-error>
+  <mat-error *ngIf="!cardForm?.value.type">Please select a card type</mat-error>
 </mat-form-field>
   <div style="display:flex;
               flex-direction:row;
@@ -32,63 +30,68 @@
   <mat-form-field style="flex-grow: 1;">
     <input
     matInput
-    ngModel
+    formControlName="name"
     name="name"
     required
+    minlength="1"
     placeholder="Name" >
   </mat-form-field>
   <mat-form-field style="flex-grow: 1;">
     <input
     matInput
-    ngModel
+    formControlName="surname"
     name="surname"
     required
-    placeholder="Surname"
-    >
+    minlength="1"
+    placeholder="Surname" >
     <br>
   </mat-form-field>
   </div>
-  <div style="display:flex;
-              flex-direction:row;
-              ">
+  <div style="display:flex; flex-direction:row; ">
   <mat-form-field style="flex-grow: 40;">
+      <!-- [ngModel]="cardnumber" -->
     <input
-    matInput
-    ngModel
-    name="cardnumber"
-    required
-    placeholder="Card Number"
-    >
+      matInput
+      formControlName="number"
+      required minlength="16" maxlength="16"
+      name="cardnumber"
+      placeholder="Card Number"
+      >
+      <!-- todo error mgmt -->
+    <mat-error *ngIf="true">
+      Please insert 16 digits</mat-error>
   </mat-form-field>
   <span></span>
   <mat-form-field style="flex-grow: 1;">
     <input
     matInput
-    ngModel
-    name="cardnumber"
-    required
+    formControlName="pin"
+    name="pin"
+    required minlength="3" maxlength="3"
     placeholder="Numero di Sicurezza"
     >
+  <!-- todo error mgmt -->
+  <mat-error *ngIf="true">Pin is 3 digits long</mat-error>
   </mat-form-field>
   </div>
 <button
   mat-raised-button
   color="primary"
-  value="submit"
-  [disabled]="!f.valid"
+  type="submit"
+  [disabled]="cardForm.value.invalid"
   >
 Aggiungi Carta
 </button>
 <button
   mat-button
   color="warn"
-  [disabled]="!f.dirty"
+  type="button"
+  [disabled]="!cardForm.dirty"
   (click)="handleAnnulla()"
   >
 Annulla
 </button>
 
-
 </form>
-
-  </mat-card-content>
+<!-- <pre> {{cardForm?.value | json}} </pre> -->
+</mat-card-content>

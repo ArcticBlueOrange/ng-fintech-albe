@@ -11,7 +11,7 @@ import { NgForm } from '@angular/forms';
 export class SignInComponent implements OnInit {
 
   @ViewChild('f') form: NgForm | null = null;
-  @Output() changeStatus = new EventEmitter<null>();
+  @Output() changeStatus = new EventEmitter();
   pswVisible: boolean = false;
   constructor() { }
 

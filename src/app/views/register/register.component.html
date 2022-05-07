@@ -72,7 +72,7 @@
     <button
         mat-raised-button
         color="primary"
-        [disabled]="f?.invalid"
+        [disabled]="f?.invalid || psw!=psw2"
         type="submit">Registrati</button>
       <p>
         <a

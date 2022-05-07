@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroupDirective, NgForm } from '@angular/forms';
+import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import { AbstractControl, FormArray, FormBuilder, FormGroup, FormGroupDirective, NgForm } from '@angular/forms';
 import { FormControl, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
+import { CardForm } from 'src/app/models/cards';
 
-/** Error when invalid control is dirty, touched, or submitted. */
-// export class MyErrorStateMatcher implements ErrorStateMatcher {
-//   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-//     const isSubmitted = form && form.submitted;
-//     return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
-//   }
-// }
+
+export class MyErrorStateMatcher implements ErrorStateMatcher {
+  isErrorState(control: FormControl | null): boolean {
+    return control?.parent?.invalid || false;
+  }
+
+}
 
 @Component({
   selector: 'alb-card-form',
@@ -19,26 +20,47 @@ import { ErrorStateMatcher } from '@angular/material/core';
 })
 export class CardFormComponent implements OnInit {
 
-  f!: NgForm;
-  typeControl = new FormControl('', [Validators.required]);
-  cardTypes = [
-    { 'name': 'mastercard', 'codeReg': /\d{16}/, 'pinReg': /\d{3}/, },
-    { 'name': 'visa', 'codeReg': /\d{16}/, 'pinReg': /\d{3}/, },
-  ];
-  // matcher = new MyErrorStateMatcher();
+  // @ViewChild('f') form: NgForm | null = null;
+  @Output() annullaForm = new EventEmitter<null>();
+  @Output() cardFormEmit = new EventEmitter<CardForm>();
+  cardForm = this.fb.group({
+    type: ['', [Validators.required, Validators.pattern(/visa|mastercard/)]],
+    name: ['', [Validators.required, Validators.minLength(2)]],
+    surname: ['', [Validators.required, Validators.minLength(2)]],
+    number: ['', [Validators.required,
+    Validators.minLength(16), Validators.maxLength(16),]],
+    pin: ['', [
+      Validators.required,
+      Validators.minLength(3), Validators.maxLength(3),]],
+  })
+  matcher = new MyErrorStateMatcher();
+  cardTypes = ['mastercard', 'visa',];
+  // get type() { return this.cardForm.get('type') as FormArray; }
 
-  constructor() { }
-
+  constructor(private fb: FormBuilder) { }
   ngOnInit(): void { }
+  public cleanup() { }
+
+  // Esempio
+  // @ViewChild('ilTuoSelettore', { read: ??? }) form!: ???;
+  // Scopri cosa inserire al posto dei ??? e usa un metodo di questa proprietà per pulire il form nel metodo cleanup!
 
   onSubmit() {
-    console.log(this.f.value)
+    // console.log(this.cardForm)
+    // this.cardFormEmit.emit(...this.cardForm.value);
+    console.log("Submit");
+    if (this.cardForm.invalid)
+    {
+      console.log("Invalid");
+      return;
+    }
+    console.log(this.cardForm.value);
   }
 
   handleAnnulla() {
     console.log("Annulla");
-    console.log(this.f.value)
-    this.f.reset();
+    this.cardForm.reset();
   }
+
 
 }

@@ -6,3 +6,14 @@ export interface Card {
   type: string;
   amount: number;
 }
+
+// export interface CardForm {
+//   type:string;
+//   name:string;
+//   surname:string;
+//   number:string;
+//   pin:string;
+// }
+
+// //pre-precated
+// export type CardType = 'visa' | 'mastercard';
