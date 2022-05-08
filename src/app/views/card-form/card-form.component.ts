@@ -2,14 +2,13 @@ import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/cor
 import { AbstractControl, FormArray, FormBuilder, FormGroup, FormGroupDirective, NgForm } from '@angular/forms';
 import { FormControl, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
-import { CardForm } from 'src/app/models/cards';
+// import { CardForm } from 'src/app/models/cards';
 
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null): boolean {
     return control?.parent?.invalid || false;
   }
-
 }
 
 @Component({
@@ -21,8 +20,8 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 export class CardFormComponent implements OnInit {
 
   // @ViewChild('f') form: NgForm | null = null;
-  @Output() annullaForm = new EventEmitter<null>();
-  @Output() cardFormEmit = new EventEmitter<CardForm>();
+  // @Output() annullaForm = new EventEmitter<null>();
+  // @Output() cardFormEmit = new EventEmitter<CardForm>();
   cardForm = this.fb.group({
     type: ['', [Validators.required, Validators.pattern(/visa|mastercard/)]],
     name: ['', [Validators.required, Validators.minLength(2)]],

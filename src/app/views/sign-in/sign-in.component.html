@@ -1,26 +1,31 @@
+  <!-- #f="ngForm"  -->
 <mat-card class="alb-form ">
-  <form #f="ngForm" (ngSubmit)="onSubmit()"
+  <form
   class="alb-flex"
+  [formGroup]="signInForm"
+  (ngSubmit)="onSubmit()"
   >
     <mat-form-field class="alb-textfield">
     <mat-icon matPrefix>account_circle</mat-icon>
+        <!-- ngModel
+        required -->
       <input
         matInput
         email="true"
-        ngModel
-        name="user"
-        required
+        name="name"
+        formControlName="name"
         placeholder="Email">
     </mat-form-field>
 
     <mat-form-field class="alb-textfield">
     <mat-icon matPrefix>lock</mat-icon>
+        <!-- ngModel
+        required -->
       <input
         matInput
         [type]="pswVisible ? 'text' : 'password'"
-        ngModel
         name="pass"
-        required
+        formControlName="pass"
         placeholder="Password">
     <mat-icon matSuffix (click)="pswVisible = !pswVisible">{{pswVisible ? 'visibility_on' : 'visibility_off'}}</mat-icon>
     </mat-form-field>
@@ -28,7 +33,7 @@
     <button
       mat-raised-button
       color="primary"
-      [disabled]="f?.invalid"
+      [disabled]="signInForm.invalid"
       type="submit">Accedi</button>
 
     <p>

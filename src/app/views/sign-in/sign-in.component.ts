@@ -1,25 +1,37 @@
 import { Component, OnInit, Output, ViewChild, EventEmitter } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { ErrorStateMatcher } from '@angular/material/core';
+// import { NgForm } from '@angular/forms';
+
+
+export class MyErrorStateMatcher implements ErrorStateMatcher {
+  isErrorState(control: FormControl | null): boolean {
+    return control?.parent?.invalid || false;
+  }
+}
 
 @Component({
   selector: 'alb-sign-in',
   templateUrl: './sign-in.component.html',
-  styles: [`
-  `
-  ]
+  styles: [` `]
 })
 export class SignInComponent implements OnInit {
 
-  @ViewChild('f') form: NgForm | null = null;
+  // @ViewChild('f') form: NgForm | null = null;
+  signInForm = this.fb.group({
+    name: ['', [Validators.required]],
+    pass: ['', [Validators.required]]
+  })
   @Output() changeStatus = new EventEmitter();
   pswVisible: boolean = false;
-  constructor() { }
+
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void { }
 
   onSubmit() {
-    if (this.form?.valid)
-      console.log(this.form?.value)
+    if (this.signInForm?.valid)
+      console.log(this.signInForm?.value)
   }
 
 }
