@@ -15,6 +15,7 @@ import { LoginComponent } from './views/login/login.component';
 import { CardListComponent } from './shared/card/card-list.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CardFormComponent } from './views/card-form/card-form.component';
+import { CardsDrawerComponent } from './views/cards-drawer/cards-drawer.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { CardFormComponent } from './views/card-form/card-form.component';
     LoginComponent,
     CardListComponent,
     CardFormComponent,
+    CardsDrawerComponent,
   ],
   imports: [
     BrowserModule,

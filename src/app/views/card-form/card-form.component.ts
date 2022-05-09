@@ -19,8 +19,15 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class CardFormComponent implements OnInit {
 
-  // @ViewChild('f') form: NgForm | null = null;
-  // @Output() annullaForm = new EventEmitter<null>();
+  @Output() annullaForm = new EventEmitter<null>();
+  @Output() formData = new EventEmitter<AbstractControl>();
+  @ViewChild(FormGroupDirective) formGroupDirective!: FormGroupDirective;
+
+  // Scopri cosa inserire al posto dei ??? e usa un metodo di questa proprietà per pulire il form nel metodo cleanup!
+  // esempio diverso rispetto a quanto detto dalla guida preso da
+  // https://stackoverflow.com/questions/51124575/angular-reactive-form-submit-and-clear-validation
+
+
   // @Output() cardFormEmit = new EventEmitter<CardForm>();
   cardForm = this.fb.group({
     type: ['', [Validators.required, Validators.pattern(/visa|mastercard/)]],
@@ -31,34 +38,41 @@ export class CardFormComponent implements OnInit {
     pin: ['', [
       Validators.required,
       Validators.minLength(3), Validators.maxLength(3),]],
-  })
+  });
   matcher = new MyErrorStateMatcher();
   cardTypes = ['mastercard', 'visa',];
-  // get type() { return this.cardForm.get('type') as FormArray; }
 
   constructor(private fb: FormBuilder) { }
   ngOnInit(): void { }
-  public cleanup() { }
+  public cleanup() {
+    this.cardForm.reset();
+    // this.htmlForm.resetForm();
+    // this.htmlForm2.resetForm();
+    this.formGroupDirective.resetForm();
+  }
 
-  // Esempio
-  // @ViewChild('ilTuoSelettore', { read: ??? }) form!: ???;
-  // Scopri cosa inserire al posto dei ??? e usa un metodo di questa proprietà per pulire il form nel metodo cleanup!
 
   onSubmit() {
     // console.log(this.cardForm)
     // this.cardFormEmit.emit(...this.cardForm.value);
     console.log("Submit");
-    if (this.cardForm.invalid)
-    {
+    if (this.cardForm.invalid) {
       console.log("Invalid");
       return;
     }
     console.log(this.cardForm.value);
+    this.formData.emit(this.cardForm);
+    // this.cardForm.reset();
+    // this.cardForm.
+    this.cleanup()
   }
 
   handleAnnulla() {
     console.log("Annulla");
-    this.cardForm.reset();
+    // this.cardForm.reset();
+    this.annullaForm.emit();
+    // this.cardForm.reset();
+    this.cleanup()
   }
 
 

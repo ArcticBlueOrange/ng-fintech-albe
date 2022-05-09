@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 
-// @import '@angular/material/prebuilt-themes/purple-green.css';
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
 html,
 body {
   height: 100%;
@@ -47,4 +47,9 @@ body {
 
 .smaller {
   font-size: small;
+}
+
+.bg-sec {
+  // background-color: aquamarine;
+  // background-color: mat-color($primary);
 }

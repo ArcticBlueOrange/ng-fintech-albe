@@ -1,38 +1,32 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Card } from 'src/app/models/cards';
 
 @Component({
   selector: 'alb-card-list',
   templateUrl: './card-list.component.html',
-  styles: [
-  ]
+  styles: []
 })
 export class CardListComponent implements OnInit {
 
-  cards: Card[] = [];
+  @Input() cards: Card[] = [];
   @Output() movimenti = new EventEmitter<string>();
   @Output() cancella = new EventEmitter<string>();
   @Output() aggiungi = new EventEmitter();
-  constructor(private http: HttpClient) { }
 
-  ngOnInit(): void {
-    this.http.get("http://localhost:3000/example-cards").subscribe((res) => this.cards = res as Card[]);
-  }
+  constructor(private http: HttpClient) { }
+  ngOnInit(): void { }
 
   handleMovimenti(cardId: string) {
-    console.log("Movimenti...")
-    const index = this.cards.findIndex(
-      (card) => card._id === cardId)
-    console.log(this.cards[index].number)
+    // TODO
+    const index = this.cards.findIndex(card => card._id === cardId)
     this.movimenti.emit(cardId);
+    // console.log("Movimenti...")
+    // console.log(this.cards[index].number)
   }
+
   handleRimuovi(cardId: string) {
-    console.log("Rimuovi...")
-    const index = this.cards.findIndex(
-      (card) => card._id === cardId);
-    console.log(this.cards[index].number)
-    this.cancella.emit(cardId);
+    this.cards = this.cards.filter(c => c._id != cardId);
   }
 
 }

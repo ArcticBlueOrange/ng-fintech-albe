@@ -53,6 +53,11 @@
           formControlName="pass1"
           placeholder="Password">
       <mat-icon matSuffix (click)="pswVisible = !pswVisible">{{pswVisible ? 'visibility_on' : 'visibility_off'}}</mat-icon>
+      <mat-error
+        *ngIf="registerForm.errors"
+        >
+        {{2*2}}
+      </mat-error>
       </mat-form-field>
       <!-- <mat-icon>lock</mat-icon> -->
       <mat-form-field  class="alb-textfield">
@@ -60,8 +65,9 @@
           matInput
           [type]="pswVisible ? 'text' : 'password'"
           name="pass2"
-          formControlName="pass2"
-          placeholder="Repeat Password">
+          [formControlName]="'pass2'"
+          placeholder="Repeat Password"
+          >
       <mat-icon matSuffix (click)="pswVisible = !pswVisible">{{pswVisible ? 'visibility_on' : 'visibility_off'}}</mat-icon>
       </mat-form-field>
       <!-- TODO PSW MUST MATCH -->
@@ -69,8 +75,8 @@
     <button
         mat-raised-button
         color="primary"
-        [disabled]="registerForm.invalid"
         type="submit">Registrati</button>
+        <!-- [disabled]="registerForm.invalid" -->
       <p>
         <a
           href="#"
@@ -86,7 +92,15 @@
   <pre>
     {{registerForm.value | json}}
     {{registerForm.valid}}
+    {{registerForm.errors}}
   </pre>
+<!-- <div>
+<pre>
+  {{registerForm | json}}
+  {{registerForm.errors | json}
+</pre>
+</div> -->
+    <!--  {{email$ | async}} -->
 
 </mat-card>
 

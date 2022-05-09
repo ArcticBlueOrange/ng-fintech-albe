@@ -1,0 +1,30 @@
+<mat-drawer-container
+style="min-height: 35%;"
+>
+<!-- style="height: 50%;" -->
+
+  <mat-drawer-content>
+    <alb-card-list
+      [cards]="cards"
+      (aggiungi)="drawer.open()"></alb-card-list>
+  </mat-drawer-content>
+
+
+  <mat-drawer #drawer [mode]="'side'" [position]="'end'" style="width: 50%;">
+    <alb-card-form
+      (formData)="handleNewCard($event);drawer.close()"
+      (annullaForm)="drawer.close();openSnackBar('Annullamento','OK')"></alb-card-form>
+  </mat-drawer>
+  <!-- <button mat-raised-button (click)="drawer.close()">
+      Close
+    </button> -->
+
+
+  <!-- TODO AGGIUNGI UN "BRILLA" se viene cliccato due volte -->
+  <!-- <div> -->
+  <!-- <button type="button" mat-raised-button (click)="drawer.toggle()" >
+      Open SideBar </button>
+  </div> -->
+
+</mat-drawer-container>
+
