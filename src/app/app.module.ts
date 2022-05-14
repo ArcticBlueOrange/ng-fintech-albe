@@ -16,6 +16,8 @@ import { CardListComponent } from './shared/card/card-list.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CardFormComponent } from './views/card-form/card-form.component';
 import { CardsDrawerComponent } from './views/cards-drawer/cards-drawer.component';
+import { MovementComponent } from './views/movements/movement.component';
+import { MovementsComponent } from './views/movements/movements.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,8 @@ import { CardsDrawerComponent } from './views/cards-drawer/cards-drawer.componen
     CardListComponent,
     CardFormComponent,
     CardsDrawerComponent,
+    MovementComponent,
+    MovementsComponent,
   ],
   imports: [
     BrowserModule,

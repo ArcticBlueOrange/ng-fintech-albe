@@ -1,0 +1,54 @@
+<p>movements work!</p>
+
+<!-- <mat-accordion
+  class="">
+  <mat-expansion-panel
+    *ngFor="let mov of movements"
+  >
+  <alb-movement
+    [mov]="mov"
+  ></alb-movement>
+  </mat-expansion-panel>
+
+</mat-accordion> -->
+
+<!-- <mat-select>
+  <mat-option
+    *ngFor="let mov of movements"
+    >
+  {{mov.title}}
+</mat-option>
+
+</mat-select> -->
+
+<!-- <mat-form-field>
+  <mat-select placeholder="Favorite movement">
+    <alb-movement *ngFor="let mov of movements" [mov]="mov">
+    </alb-movement>
+  </mat-select>
+</mat-form-field> -->
+<!-- <alb-movement
+  [mov]="movements[0]"
+  ></alb-movement> -->
+  <mat-list>
+
+    <h3 mat-subheader>
+      Movements
+    </h3>
+<mat-list-item
+  *ngFor="let mov of movements"
+  mat-list-option
+  >
+<alb-movement [mov]="mov">
+    [mov]="mov">
+  </alb-movement>
+
+</mat-list-item>
+
+
+  </mat-list>
+  <hr>
+    <!-- <alb-movement
+      *ngFor="let mov of movements"
+      [mov]="mov"
+      ></alb-movement> -->
