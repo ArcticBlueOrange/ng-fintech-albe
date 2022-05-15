@@ -4,11 +4,20 @@ import { Movement } from 'src/app/models/cards';
 @Component({
   selector: 'alb-movement',
   templateUrl: './movement.component.html',
-  styles: [ ]
+  styleUrls: ['./movement.component.css']
 })
 export class MovementComponent implements OnInit {
 
-  @Input() mov!: Movement;
+  openPanel: boolean = false;
+  // @Input() mov!: Movement;
+  @Input() dateLong: string | null = null;
+  @Input() dateShort: string | null = null;
+  @Input() title: string = '';
+  @Input() description: string = '';
+  @Input() amount: number = 0;
+  @Input() cardId: string = '';
+  @Input() type: string = '';
+
 
   constructor() { }
   ngOnInit(): void { }

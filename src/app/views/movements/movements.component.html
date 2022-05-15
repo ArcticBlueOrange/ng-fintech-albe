@@ -1,54 +1,47 @@
-<p>movements work!</p>
-
-<!-- <mat-accordion
-  class="">
-  <mat-expansion-panel
-    *ngFor="let mov of movements"
-  >
-  <alb-movement
-    [mov]="mov"
-  ></alb-movement>
-  </mat-expansion-panel>
-
-</mat-accordion> -->
-
-<!-- <mat-select>
-  <mat-option
-    *ngFor="let mov of movements"
+<!-- {{cardSelect}} -->
+<mat-form-field>
+  <mat-select placeholder="Choose a card"
+    (valueChange)="onSelectCard($event)"
     >
-  {{mov.title}}
-</mat-option>
-
-</mat-select> -->
-
-<!-- <mat-form-field>
-  <mat-select placeholder="Favorite movement">
-    <alb-movement *ngFor="let mov of movements" [mov]="mov">
-    </alb-movement>
+    <!-- (openedChange)="onSelectCard($event)"
+    (selectionChange)="onSelectCard($event)" -->
+    <!-- [(value)]="cardSelect" -->
+  <mat-option
+    value="ALL" >
+    ALL
+  </mat-option>
+  <mat-option
+    *ngFor="let card of cards"
+    [value]="card._id"
+    >
+    {{card.type}} - {{card.number}}
+  </mat-option>
   </mat-select>
-</mat-form-field> -->
-<!-- <alb-movement
-  [mov]="movements[0]"
-  ></alb-movement> -->
-  <mat-list>
 
-    <h3 mat-subheader>
-      Movements
-    </h3>
-<mat-list-item
-  *ngFor="let mov of movements"
-  mat-list-option
+</mat-form-field>
+<mat-accordion>
+
+  <alb-movement *ngFor="let mov of movementsDisp.slice(0,rowDisp)"
+  [dateLong]="mov.timestamp | date:'yyyy-mm-dd HH:MM:ss'"
+  [dateShort]="mov.timestamp | date:'dd/mm/yyyy'"
+  [title]="mov.title"
+  [description]="mov.description"
+  [amount]="mov.amount"
+  [cardId]="mov.cardId"
+  [type]="mov.type"
   >
-<alb-movement [mov]="mov">
-    [mov]="mov">
+  <!-- [mov]="mov" -->
   </alb-movement>
 
-</mat-list-item>
 
+  <button mat-button
+  *ngIf="rowDisp < movementsDisp.length"
+  style="width: 100%;"
+  (click)="onMore()">
+    load more
 
-  </mat-list>
-  <hr>
-    <!-- <alb-movement
-      *ngFor="let mov of movements"
-      [mov]="mov"
-      ></alb-movement> -->
+  </button>
+
+</mat-accordion>
+
+<hr>

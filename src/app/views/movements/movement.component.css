@@ -1,0 +1,57 @@
+mat-expansion-panel {
+  margin: 10px;
+}
+
+mat-panel-title {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: space-around;
+  color: rgb(85, 85, 85);
+}
+
+/* mat-panel-title>div>div {
+  display: flex;
+  flex-direction: row-reverse;
+  border: 1px solid red;
+} */
+
+mat-panel-title>div {
+  width: 100%;
+  display: flex;
+  gap: 5px;
+  font-weight: 600;
+}
+
+.date {
+  margin-left: 0;
+  font-size: smaller;
+}
+
+.title {
+  flex-grow: 4;
+}
+
+.description {
+  color: rgb(128, 128, 128);
+  font-weight: 100;
+}
+
+.red {
+  color: red;
+}
+
+.green {
+  color: green;
+}
+
+.date {
+  font-style: italic;
+  font-size: small;
+  /* color: rgb(128, 128, 128); */
+  font-weight: 100;
+}
+
+.amount {
+  flex-grow: 1.1;
+}

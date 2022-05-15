@@ -18,6 +18,7 @@ import { CardFormComponent } from './views/card-form/card-form.component';
 import { CardsDrawerComponent } from './views/cards-drawer/cards-drawer.component';
 import { MovementComponent } from './views/movements/movement.component';
 import { MovementsComponent } from './views/movements/movements.component';
+import { EllipsePipe } from './shared/ellipse.pipe';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { MovementsComponent } from './views/movements/movements.component';
     CardsDrawerComponent,
     MovementComponent,
     MovementsComponent,
+    EllipsePipe,
   ],
   imports: [
     BrowserModule,
