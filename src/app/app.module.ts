@@ -19,6 +19,7 @@ import { CardsDrawerComponent } from './views/cards-drawer/cards-drawer.componen
 import { MovementComponent } from './views/movements/movement.component';
 import { MovementsComponent } from './views/movements/movements.component';
 import { EllipsePipe } from './shared/ellipse.pipe';
+import { CardifyPipe } from './shared/cardify.pipe';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { EllipsePipe } from './shared/ellipse.pipe';
     MovementComponent,
     MovementsComponent,
     EllipsePipe,
+    CardifyPipe,
   ],
   imports: [
     BrowserModule,

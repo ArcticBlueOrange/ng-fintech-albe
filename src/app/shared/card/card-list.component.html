@@ -27,7 +27,7 @@
   >credit_card</mat-icon>
   <div>
 <!-- class="main alb-flex" -->
-    <div matLine> {{card.number}} </div>
+    <div matLine> {{card.number | cardify}} </div>
     <div matLine>
       {{card.type | titlecase}}
       -

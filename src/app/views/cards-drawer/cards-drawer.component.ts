@@ -31,15 +31,13 @@ export class CardsDrawerComponent implements OnInit {
     });
   }
 
-
-  handleAggiungi() {
-    this.openSnackBar("hooolo", "yolo");
-  }
+  // handleAggiungi() {
+  // }
 
   handleNewCard(form: AbstractControl) {
-    console.log("new card form received");
-    console.log(form)
-    console.log(form.value);
+    // console.log("new card form received");
+    // console.log(form)
+    // console.log(form.value);
     // TODO RECEIVE NEW CARD DATA FROM SERVER
     let newCard: Card = {
       _id: `${Date.now()}`,
