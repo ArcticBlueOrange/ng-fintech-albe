@@ -20,6 +20,8 @@ import { MovementComponent } from './views/movements/movement.component';
 import { MovementsComponent } from './views/movements/movements.component';
 import { EllipsePipe } from './shared/ellipse.pipe';
 import { CardifyPipe } from './shared/cardify.pipe';
+import { TransferComponent } from './views/transfer/transfer.component';
+import { ContactsComponent } from './views/transfer/contacts.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +36,8 @@ import { CardifyPipe } from './shared/cardify.pipe';
     MovementsComponent,
     EllipsePipe,
     CardifyPipe,
+    TransferComponent,
+    ContactsComponent,
   ],
   imports: [
     BrowserModule,

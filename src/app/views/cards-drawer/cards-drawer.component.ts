@@ -31,9 +31,6 @@ export class CardsDrawerComponent implements OnInit {
     });
   }
 
-  // handleAggiungi() {
-  // }
-
   handleNewCard(form: AbstractControl) {
     // console.log("new card form received");
     // console.log(form)

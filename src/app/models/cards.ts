@@ -27,3 +27,10 @@ export interface Movement {
   cardId: string;
   timestamp: number;
 }
+
+export interface Contact {
+  _id: string;
+  name: string;
+  surname: string;
+  iban: string;
+}
