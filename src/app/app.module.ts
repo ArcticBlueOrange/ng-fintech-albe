@@ -22,6 +22,8 @@ import { EllipsePipe } from './shared/ellipse.pipe';
 import { CardifyPipe } from './shared/cardify.pipe';
 import { TransferComponent } from './views/transfer/transfer.component';
 import { ContactsComponent } from './views/transfer/contacts.component';
+import { ContactListComponent } from './views/transfer/contact-list.component';
+import { FilterPipe } from './shared/filter.pipe';
 
 @NgModule({
   declarations: [
@@ -38,6 +40,8 @@ import { ContactsComponent } from './views/transfer/contacts.component';
     CardifyPipe,
     TransferComponent,
     ContactsComponent,
+    ContactListComponent,
+    FilterPipe,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,42 @@
+<mat-form-field
+  style="width: 100%;" >
+  <input
+    matInput
+    #pippo
+    placeholder="Cerca" >
+</mat-form-field>
+
+<h5> I tuoi Contatti </h5>
+<mat-list>
+  <mat-list-item
+    *ngFor="let c of contacts | filter: pippo.value: 'name'">
+
+  <mat-icon matListIcon>account_circle</mat-icon>
+  <div matLine> {{c.name + " " + c.surname | titlecase}} </div>
+  <div matLine> {{c.iban}} </div>
+
+    <span style="flex-grow:2;"></span>
+
+
+    <button mat-icon-button color="primary"
+      matTooltip="Seleziona"
+      matTooltipPosition="left"
+      aria-label="Bottone per selezionare">
+      <mat-icon style="margin-left: 3%;">checkmark</mat-icon>
+    </button>
+    <button mat-icon-button color="primary"
+      matTooltip="Modifica"
+      matTooltipPosition="left"
+      aria-label="Bottone per modificare">
+      <mat-icon style="margin-left: 3%;">edit</mat-icon>
+    </button>
+    <button mat-icon-button color="warn"
+      matTooltip="Cancella"
+      matTooltipPosition="left"
+      aria-label="Bottone per rimuovere">
+      <mat-icon style="margin-left: 3%;">delete</mat-icon>
+    </button>
+
+  </mat-list-item>
+
+</mat-list>

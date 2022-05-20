@@ -1,1 +1,15 @@
-<p>contacts works!</p>
+<!-- todo not mobile responsive -->
+<div style="min-width: 500px;" >
+
+<alb-contact-list
+  [contacts]="contacts"
+></alb-contact-list>
+
+<button
+  mat-raised-button
+  color="primary"
+  style="width: 100%;"
+  > Aggiungi Carta
+  <!-- (click)="aggiungi.emit()" -->
+</button>
+</div>

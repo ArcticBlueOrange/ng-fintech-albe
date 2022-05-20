@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Card, Contact } from 'src/app/models/cards';
+import { ContactsComponent } from './contacts.component';
 
 @Component({
   selector: 'alb-transfer',
@@ -25,6 +26,7 @@ export class TransferComponent implements OnInit {
   ngOnInit(): void {
     this.http.get('http://localhost:3000/example-cards').subscribe(
       (res) => this.cards = res as Card[]);
+    const dialogRef = this.dialog.open(ContactsComponent)
   }
 
   onSubmit() {
@@ -33,12 +35,11 @@ export class TransferComponent implements OnInit {
   }
 
   openDialog() {
-    // const dialogRef = this.dialog.open({
-    //   width: '250px',
-    //   data: { ...this.contacts }
-    // }
-    // )
-
+    const dialogRef = this.dialog.open(ContactsComponent, {
+      height: '1400px',
+      width: '600px',
+    })
   }
+
 
 }
