@@ -1,1 +1,44 @@
-<p>contact-form works!</p>
+<button
+  style="width:100%"
+  mat-button
+  color="basic"
+  (click)="undo.emit()"
+  >
+  Indietro
+</button>
+
+<form
+  class="alb-flex"
+  [formGroup]="form"
+  (ngSubmit)="onSubmit()"
+  >
+
+  <mat-form-field>
+    <input
+      matInput
+      formControlName="name"
+      placeholder="Nome"
+      >
+  </mat-form-field>
+  <mat-form-field>
+    <input
+      matInput
+      formControlName="surname"
+      placeholder="Cognome"
+      >
+  </mat-form-field>
+  <mat-form-field>
+    <input
+      matInput
+      formControlName="iban"
+      placeholder="IBAN"
+      >
+  </mat-form-field>
+<button
+  mat-raised-button
+  color="primary"
+  style="width: 100%;"
+  [disabled]="form.invalid"
+  > Conferma
+</button>
+</form>

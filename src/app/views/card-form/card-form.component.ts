@@ -62,8 +62,6 @@ export class CardFormComponent implements OnInit {
     }
     console.log(this.cardForm.value);
     this.formData.emit(this.cardForm);
-    // this.cardForm.reset();
-    // this.cardForm.
     this.cleanup()
   }
 

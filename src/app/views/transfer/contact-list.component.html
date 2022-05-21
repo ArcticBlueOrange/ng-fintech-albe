@@ -21,18 +21,22 @@
     <button mat-icon-button color="primary"
       matTooltip="Seleziona"
       matTooltipPosition="left"
-      aria-label="Bottone per selezionare">
+      (click)="selectContact.emit(c)"
+      aria-label="Bottone per selezionare"
+      >
       <mat-icon style="margin-left: 3%;">checkmark</mat-icon>
     </button>
     <button mat-icon-button color="primary"
       matTooltip="Modifica"
       matTooltipPosition="left"
+      (click)="editContact.emit(c)"
       aria-label="Bottone per modificare">
       <mat-icon style="margin-left: 3%;">edit</mat-icon>
     </button>
     <button mat-icon-button color="warn"
       matTooltip="Cancella"
       matTooltipPosition="left"
+      (click)="removeContact.emit(c)"
       aria-label="Bottone per rimuovere">
       <mat-icon style="margin-left: 3%;">delete</mat-icon>
     </button>
@@ -40,3 +44,12 @@
   </mat-list-item>
 
 </mat-list>
+
+<button
+  mat-raised-button
+  color="primary"
+  style="width: 100%;"
+  (click)="newContact.emit()"
+  > Nuovo Contatto
+  <!-- (click)="aggiungi.emit()" -->
+</button>

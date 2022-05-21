@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+// import { MatDialogRef } from '@angular/material/dialog';
 import { Contact } from 'src/app/models/cards';
 
 @Component({
@@ -8,11 +9,17 @@ import { Contact } from 'src/app/models/cards';
 })
 export class ContactListComponent implements OnInit {
 
+  @Output() newContact = new EventEmitter();
+  @Output() selectContact = new EventEmitter<Contact>();
+  @Output() editContact = new EventEmitter<Contact>();
+  @Output() removeContact = new EventEmitter<Contact>();
   @Input() contacts: Contact[] = [];
 
-  constructor() { }
+  constructor(
+  ) {}
+    // public dialogRef: MatDialogRef<ContactListComponent>,
+    // @Inject(MAT_DIALOG_DATA) public data: DialogData
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
 }

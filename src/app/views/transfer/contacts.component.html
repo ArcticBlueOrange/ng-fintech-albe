@@ -3,13 +3,18 @@
 
 <alb-contact-list
   [contacts]="contacts"
-></alb-contact-list>
+  *ngIf="listpage"
+  (newContact)="listpage=false"
+  (editContact)="handleEdit($event)"
+  (removeContact)="handleRemove($event)"
+  (selectContact)="handleSelect($event)"
+  [mat-dialog-close]="selectedContact"
+  ></alb-contact-list>
+<alb-contact-form
+  *ngIf="!listpage"
+  (undo)="listpage=true;this.selectedContact=null"
+  (addcontact)="handleNewContact($event)"
+  [template]="selectedContact"
+  ></alb-contact-form>
 
-<button
-  mat-raised-button
-  color="primary"
-  style="width: 100%;"
-  > Aggiungi Carta
-  <!-- (click)="aggiungi.emit()" -->
-</button>
 </div>
