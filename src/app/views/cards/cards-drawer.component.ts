@@ -5,7 +5,7 @@ import { AbstractControl } from '@angular/forms';
 import { MatDrawer } from '@angular/material/sidenav';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Card } from 'src/app/models/cards';
-import { CardFormComponent } from '../card-form/card-form.component';
+import { CardFormComponent } from './components/card-form.component';
 
 @Component({
   selector: 'alb-cards-drawer',

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-// import { /*FormBuilder,*/ NgForm } from '@angular/forms';
 import { Card, Movement } from 'src/app/models/cards';
 
 @Component({

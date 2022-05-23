@@ -4,7 +4,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Card, Contact } from 'src/app/models/cards';
-import { ContactsComponent } from './contacts.component';
+import { ContactsComponent } from './components/contacts.component';
 
 @Component({
   selector: 'alb-transfer',
