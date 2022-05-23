@@ -30,9 +30,7 @@ export class AppointmentsComponent implements OnInit {
   ];
   days: DayWithSlots[] = [
   ]
-  constructor() {
-    // console.log(this.drawer)
-  }
+  constructor() {}
   ngOnInit(): void {
    }
 

@@ -5,6 +5,7 @@ import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { latLng, tileLayer } from 'leaflet';
 import { Location } from 'src/app/models/banks';
 import { DayWithSlot, DayWithSlots } from 'src/app/models/slots';
+import { dateToString } from 'src/app/shared/utils/numbers';
 import { ConfirmationButtonComponent } from './confirmation-button.component';
 
 @Component({
@@ -61,7 +62,7 @@ export class DateSelectorComponent implements OnInit {
   }
 
   timeFilter = (date: Date) => {
-    const d = this.dateToString(date, 'us')
+    const d = dateToString(date, 'us')
     const i = this.daysWithSlots.findIndex(
       day => day.day === d)
     // TODO CALLED TOO MANY TIMES
@@ -96,34 +97,11 @@ export class DateSelectorComponent implements OnInit {
     console.log("Appointment confirmed");
     console.log(this.form.value);
     this.selectedTime.emit({
-      day: this.dateToString(this.form.value.day, 'eu'),
+      day: dateToString(this.form.value.day, 'eu'),
       slots: this.form.value.time[0] as 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 21 | 22 | 23 | 24
     })
     // show popup to confirm
     // close the drawer and reset form
     // this.form.reset();
-  }
-
-  dateToString(d: Date, locale: 'eu' | 'us') {
-    // console.log(d)
-    try {
-      let month = this.leftPad(d.getMonth() + 1)
-      let day = this.leftPad(d.getDate())
-      let year = this.leftPad(d.getFullYear());
-      if (locale === 'us')
-        return `${month}/${day}/${year}`;
-      else return `${day}/${month}/${year}`;
-    } catch (e) {
-      console.log("Dato: " + d);
-      return "" + d;
-    }
-  }
-
-  leftPad(n: number, d: number = 2) {
-    // console.log("Dato: " + n);
-    let o = n.toString();
-    const l = o.length;
-    if (l >= d) return o;
-    return '0'.repeat(d - l) + o;
   }
 }
