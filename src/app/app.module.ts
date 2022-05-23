@@ -1,77 +1,40 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {
-  ReactiveFormsModule,
-} from '@angular/forms';
+import { ReactiveFormsModule, } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { AppComponent } from './app.component';
 import { MaterialModule } from './shared/material/material.module';
-import { SignInComponent } from './views/login/components/sign-in.component';
-import { RegisterComponent } from './views/login/components/register.component';
-import { LoginComponent } from './views/login/login.component';
-import { CardListComponent } from './views/cards/components/card-list.component';
 import { HttpClientModule } from '@angular/common/http';
-import { CardFormComponent } from './views/cards/components/card-form.component';
-import { CardsComponent } from './views/cards/cards.component';
-import { MovementComponent } from './views/movements/components/movement.component';
-import { MovementsComponent } from './views/movements/movements.component';
-import { EllipsePipe } from './shared/ellipse.pipe';
-import { CardifyPipe } from './shared/cardify.pipe';
-import { TransferComponent } from './views/transfer/transfer.component';
-import { ContactsComponent } from './views/transfer/components/contacts.component';
-import { ContactListComponent } from './views/transfer/components/contact-list.component';
-import { FilterPipe } from './shared/filter.pipe';
-import { ContactFormComponent } from './views/transfer/components/contact-form.component';
-import { AppointmentsComponent } from './views/appointments/appointments.component';
-import { AddressSelectorComponent } from './views/appointments/components/address-selector.component';
-import { DateSelectorComponent } from './views/appointments/components/date-selector.component';
-import { ConfirmationButtonComponent } from './views/appointments/components/confirmation-button.component';
-import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+
+import { SharedModule } from './shared/shared.module';
 import { MenuComponent } from './shared/menu/menu.component';
-import { CardsModule } from './views/cards/cards.module';
-import { AppointmentsModule } from './views/appointments/appointments.module';
 import { LoginModule } from './views/login/login.module';
-import { TransferModule } from './views/transfer/transfer.module';
-import { MovementsModule } from './views/movements/movements.module';
+// import { CardsModule } from './views/cards/cards.module';
+// import { AppointmentsModule } from './views/appointments/appointments.module';
+// import { TransferModule } from './views/transfer/transfer.module';
+// import { MovementsModule } from './views/movements/movements.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SignInComponent,
-    RegisterComponent,
-    LoginComponent,
-    CardListComponent,
-    CardFormComponent,
-    CardsComponent,
-    MovementComponent,
-    MovementsComponent,
-    EllipsePipe,
-    CardifyPipe,
-    TransferComponent,
-    ContactsComponent,
-    ContactListComponent,
-    FilterPipe,
-    ContactFormComponent,
-    AppointmentsComponent,
-    AddressSelectorComponent,
-    DateSelectorComponent,
-    ConfirmationButtonComponent,
     MenuComponent,
   ],
   imports: [
+    SharedModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
     ReactiveFormsModule,
     HttpClientModule,
-    LeafletModule,
-    CardsModule,
-    AppointmentsModule,
     LoginModule,
-    TransferModule,
-    MovementsModule,
+    AppRoutingModule,
+    // CardsModule,
+    // AppointmentsModule,
+    // TransferModule,
+    // MovementsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
