@@ -30,6 +30,7 @@ import { AddressSelectorComponent } from './views/appointments/address-selector.
 import { DateSelectorComponent } from './views/appointments/date-selector.component';
 import { ConfirmationButtonComponent } from './views/appointments/confirmation-button.component';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { MenuComponent } from './shared/menu/menu.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
     AddressSelectorComponent,
     DateSelectorComponent,
     ConfirmationButtonComponent,
+    MenuComponent,
   ],
   imports: [
     BrowserModule,
