@@ -8,11 +8,11 @@ import { Card } from 'src/app/models/cards';
 import { CardFormComponent } from './components/card-form.component';
 
 @Component({
-  selector: 'alb-cards-drawer',
-  templateUrl: './cards-drawer.component.html',
+  selector: 'alb-cards',
+  templateUrl: './cards.component.html',
   styles: []
 })
-export class CardsDrawerComponent implements OnInit {
+export class CardsComponent implements OnInit {
 
   cards: Card[] = [];
   @ViewChild('cardForm', { read: "any" }) form!: CardFormComponent;

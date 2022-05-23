@@ -13,7 +13,7 @@ import { LoginComponent } from './views/login/login.component';
 import { CardListComponent } from './views/cards/components/card-list.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CardFormComponent } from './views/cards/components/card-form.component';
-import { CardsDrawerComponent } from './views/cards/cards-drawer.component';
+import { CardsComponent } from './views/cards/cards.component';
 import { MovementComponent } from './views/movements/components/movement.component';
 import { MovementsComponent } from './views/movements/movements.component';
 import { EllipsePipe } from './shared/ellipse.pipe';
@@ -29,6 +29,11 @@ import { DateSelectorComponent } from './views/appointments/components/date-sele
 import { ConfirmationButtonComponent } from './views/appointments/components/confirmation-button.component';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { MenuComponent } from './shared/menu/menu.component';
+import { CardsModule } from './views/cards/cards.module';
+import { AppointmentsModule } from './views/appointments/appointments.module';
+import { LoginModule } from './views/login/login.module';
+import { TransferModule } from './views/transfer/transfer.module';
+import { MovementsModule } from './views/movements/movements.module';
 
 @NgModule({
   declarations: [
@@ -38,7 +43,7 @@ import { MenuComponent } from './shared/menu/menu.component';
     LoginComponent,
     CardListComponent,
     CardFormComponent,
-    CardsDrawerComponent,
+    CardsComponent,
     MovementComponent,
     MovementsComponent,
     EllipsePipe,
@@ -61,8 +66,12 @@ import { MenuComponent } from './shared/menu/menu.component';
     MaterialModule,
     ReactiveFormsModule,
     HttpClientModule,
-    LeafletModule,//.forRoot()
-
+    LeafletModule,
+    CardsModule,
+    AppointmentsModule,
+    LoginModule,
+    TransferModule,
+    MovementsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
