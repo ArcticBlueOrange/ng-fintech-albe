@@ -15,10 +15,7 @@ export class ContactListComponent implements OnInit {
   @Output() removeContact = new EventEmitter<Contact>();
   @Input() contacts: Contact[] = [];
 
-  constructor(
-  ) {}
-    // public dialogRef: MatDialogRef<ContactListComponent>,
-    // @Inject(MAT_DIALOG_DATA) public data: DialogData
+  constructor() {}
 
   ngOnInit(): void {}
 

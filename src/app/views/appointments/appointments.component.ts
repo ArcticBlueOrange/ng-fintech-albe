@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
 import { Location } from 'src/app/models/banks';
+import { DayWithSlot, DayWithSlots } from 'src/app/models/slots';
 
 @Component({
   selector: 'alb-appointments',
@@ -27,8 +28,10 @@ export class AppointmentsComponent implements OnInit {
       coords: [2,2]
     },
   ];
+  days: DayWithSlots[] = [
+  ]
   constructor() {
-    console.log(this.drawer)
+    // console.log(this.drawer)
   }
   ngOnInit(): void {
    }
@@ -36,6 +39,10 @@ export class AppointmentsComponent implements OnInit {
   onSelected(b: Location) {
     this.drawer.open();
     this.bankSelected = b;
+  }
+  onSelectedTime(d: DayWithSlot) {
+    console.log(d);
+    this.drawer.close();
   }
 
 

@@ -28,6 +28,8 @@ import { ContactFormComponent } from './views/transfer/contact-form.component';
 import { AppointmentsComponent } from './views/appointments/appointments.component';
 import { AddressSelectorComponent } from './views/appointments/address-selector.component';
 import { DateSelectorComponent } from './views/appointments/date-selector.component';
+import { ConfirmationButtonComponent } from './views/appointments/confirmation-button.component';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
 @NgModule({
   declarations: [
@@ -50,6 +52,7 @@ import { DateSelectorComponent } from './views/appointments/date-selector.compon
     AppointmentsComponent,
     AddressSelectorComponent,
     DateSelectorComponent,
+    ConfirmationButtonComponent,
   ],
   imports: [
     BrowserModule,
@@ -59,6 +62,8 @@ import { DateSelectorComponent } from './views/appointments/date-selector.compon
     // FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    LeafletModule,//.forRoot()
+
   ],
   providers: [],
   bootstrap: [AppComponent]

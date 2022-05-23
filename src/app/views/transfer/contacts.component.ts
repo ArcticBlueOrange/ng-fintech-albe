@@ -34,8 +34,6 @@ export class ContactsComponent implements OnInit {
     },
   ]
 
-  // public dialogRef: MatDialogRef<ContactsComponent>,
-  // @Inject(MAT_DIALOG_DATA) public data: DialogData
   constructor(public dialogRef: MatDialogRef<ContactsComponent>) { }
   ngOnInit(): void { }
 

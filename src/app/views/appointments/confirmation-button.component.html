@@ -1,0 +1,26 @@
+<!-- <mat-card> -->
+
+<h1>
+  Confermi l'appuntamento?
+</h1>
+<mat-card-header>
+  presso {{data.bank?.name}}
+  <!-- il giorno {{data.date?.day}} -->
+  alle {{data.date?.slots}}
+  ?
+</mat-card-header>
+
+<button mat-button
+  (click)="onNoClick()"
+  > Annulla
+</button>
+<button mat-raised-button
+  [mat-dialog-close]="true"
+  > Conferma
+</button>
+
+<!-- <button mat-raised-button color="primary" style="width: 100%;" [mat-dialog-close]="true"> Conferma -->
+<!-- (click)="onConfirm()" -->
+<!-- [disabled]="form.invalid" -->
+<!-- </button> -->
+<!-- </mat-card> -->
