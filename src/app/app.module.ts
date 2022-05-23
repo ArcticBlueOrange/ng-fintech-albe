@@ -25,6 +25,9 @@ import { ContactsComponent } from './views/transfer/contacts.component';
 import { ContactListComponent } from './views/transfer/contact-list.component';
 import { FilterPipe } from './shared/filter.pipe';
 import { ContactFormComponent } from './views/transfer/contact-form.component';
+import { AppointmentsComponent } from './views/appointments/appointments.component';
+import { AddressSelectorComponent } from './views/appointments/address-selector.component';
+import { DateSelectorComponent } from './views/appointments/date-selector.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +47,9 @@ import { ContactFormComponent } from './views/transfer/contact-form.component';
     ContactListComponent,
     FilterPipe,
     ContactFormComponent,
+    AppointmentsComponent,
+    AddressSelectorComponent,
+    DateSelectorComponent,
   ],
   imports: [
     BrowserModule,

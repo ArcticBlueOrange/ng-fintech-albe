@@ -1,0 +1,21 @@
+<mat-drawer-container>
+
+  <mat-drawer-content>
+    <alb-address-selector
+      [banks]="banks"
+      (bankSelected)="onSelected($event)"
+    ></alb-address-selector>
+      <!-- (bankSelected)="drawer.open()" -->
+  </mat-drawer-content>
+
+  <mat-drawer
+    #drawer
+    style="width: 30%;"
+    [position]="'end'">
+    <alb-date-selector
+      [bankSelected]="bankSelected"
+    >
+    </alb-date-selector>
+  </mat-drawer>
+
+</mat-drawer-container>

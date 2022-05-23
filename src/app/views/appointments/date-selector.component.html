@@ -1,0 +1,63 @@
+<mat-card-header>
+Appuntamento presso {{bankSelected?.name}}
+</mat-card-header>
+
+<!-- aggiungere mappa -->
+
+<form [formGroup]="form"
+  (ngSubmit)="onSubmit()"
+>
+<!-- todo change to modal -->
+<!-- ora non c'ho voglia -->
+<button
+  mat-raised-button
+  color="primary"
+  style="width: 100%;"
+  [disabled]="form.invalid"
+> Conferma
+</button>
+<mat-form-field
+  style="width: 100%;"
+>
+  <input
+    matInput
+    [matDatepickerFilter]="dateFilter"
+    [matDatepicker]="picker"
+    formControlName="day"
+    placeholder="Scegli un giorno"
+    >
+  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker
+    #picker
+  ></mat-datepicker>
+
+</mat-form-field>
+
+<ng-container *ngIf="form.value.day != ''" >
+
+<mat-card-header>
+Giorno {{0}}
+</mat-card-header>
+
+  <mat-selection-list [multiple]="false"
+      formControlName="time"
+  >
+    <mat-list-option
+      *ngFor="let t of times"
+      [value]="t"
+      >
+      <mat-icon matListIcon>timer</mat-icon>
+      <div matLine> {{t}} </div>
+    </mat-list-option>
+  </mat-selection-list>
+</ng-container>
+
+</form>
+
+<hr>
+
+
+
+<pre *ngIf="form.value.day != ''">
+  {{form.value | json}}
+</pre>

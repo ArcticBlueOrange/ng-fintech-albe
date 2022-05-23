@@ -32,9 +32,6 @@ export class CardsDrawerComponent implements OnInit {
   }
 
   handleNewCard(form: AbstractControl) {
-    // console.log("new card form received");
-    // console.log(form)
-    // console.log(form.value);
     // TODO RECEIVE NEW CARD DATA FROM SERVER
     let newCard: Card = {
       _id: `${Date.now()}`,
@@ -45,7 +42,6 @@ export class CardsDrawerComponent implements OnInit {
       type: form.value.type,
     }
     this.cards = [...this.cards, newCard];
-    // this.drawer.toggle();
     this.openSnackBar("Card Added", "OK");
   }
 

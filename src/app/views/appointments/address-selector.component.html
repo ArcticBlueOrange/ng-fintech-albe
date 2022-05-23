@@ -1,0 +1,13 @@
+<mat-card>
+  <mat-card-header>Sedi</mat-card-header>
+  <mat-selection-list [multiple]="false">
+    <mat-list-option *ngFor="let b of banks" (click)="onClick(b)">
+      <mat-icon matListIcon>business</mat-icon>
+      <div matLine> {{b.name}} </div>
+      <div matLine>
+        {{b.address}}
+      </div>
+      <span style="flex-grow:2;"></span>
+    </mat-list-option>
+  </mat-selection-list>
+</mat-card>
