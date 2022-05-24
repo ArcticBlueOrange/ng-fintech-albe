@@ -1,23 +1,14 @@
 import { NgModule } from '@angular/core'; import { RouterModule, Routes } from '@angular/router';
+import { MovementsComponent } from './views/movements/movements.component';
 
 const routes: Routes = [
   {
-    path: 'cards',
-    loadChildren: () => import('./views/cards/cards.module').then(m => m.CardsModule)
+    path: 'login',
+    loadChildren: () => import('./views/login/login.module').then( m => m.LoginModule),
   },
-  {
-    path: 'movements',
-    loadChildren: () => import('./views/movements/movements.module').then(m => m.MovementsModule)
-  },
-  {
-    path: 'transfer',
-    loadChildren: () => import('./views/transfer/transfer.module').then(m => m.TransferModule)
-  },
-  {
-    path: 'appointments',
-    loadChildren: () => import('./views/appointments/appointments.module').then(m => m.AppointmentsModule)
-  },
-  { path: '', redirectTo: 'movements', pathMatch: 'full' },
+  { path: 'dashboard', loadChildren: () => import('./views/dashboard/dashboard.module').then(m => m.DashboardModule) },
+  { path: 'movements', loadChildren: () => import('./views/demmerda/demmerda.module').then(m => m.DemmerdaModule) },
+  { path: '**', redirectTo: 'dashboard', pathMatch: 'full' },
 ];
 
 @NgModule({

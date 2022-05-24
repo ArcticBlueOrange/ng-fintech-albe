@@ -9,12 +9,12 @@ import { Component, OnInit } from '@angular/core';
 export class MenuComponent implements OnInit {
 
   items = [
-    { name: "home", link: "", icon: "home",  },
-    { name: "carte",  link: "cards",icon: "credit_card",  },
-    { name: "movimenti",  link: "movements",icon: "receipt_long",  },
-    { name: "trasferisci",  link: "transfer",icon: "paid",  },
-    { name: "appuntamenti",  link: "appointments",icon: "events",  },
-    { name: "tasse",  link: "",icon: "summarize",  },
+    { name: "home", link: "", icon: "home", },
+    { name: "carte", link: "dashboard/cards", icon: "credit_card", },
+    { name: "movimenti", link: "dashboard/movements", icon: "receipt_long", },
+    { name: "trasferisci", link: "dashboard/transfer", icon: "paid", },
+    { name: "appuntamenti", link: "dashboard/appointments", icon: "events", },
+    { name: "tasse", link: "", icon: "summarize", },
   ]
   user: string = "Alberto Brandolini"
   constructor() { }

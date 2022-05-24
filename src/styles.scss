@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 
-@import '@angular/material/prebuilt-themes/indigo-pink.css';
+@import "@angular/material/prebuilt-themes/indigo-pink.css";
 html,
 body {
   height: 100%;
@@ -14,7 +14,6 @@ body {
   display: flex;
   flex-direction: column;
   align-items: stretch;
-
 }
 .alb-textfield {
   display: flex;
@@ -59,4 +58,9 @@ body {
 }
 .alb-out {
   color: red;
+}
+
+.link-active {
+  // border: 1px solid orange;
+  // border: 1px solid teal;
 }

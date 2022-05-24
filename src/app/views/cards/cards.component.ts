@@ -10,7 +10,6 @@ import { CardFormComponent } from './components/card-form.component';
 @Component({
   selector: 'alb-cards',
   templateUrl: './cards.component.html',
-  styles: []
 })
 export class CardsComponent implements OnInit {
 
