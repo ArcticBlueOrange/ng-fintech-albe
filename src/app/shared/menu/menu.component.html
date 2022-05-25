@@ -13,6 +13,7 @@ style="height: 100%"
   *ngFor="let item of items"
   [routerLink]="item.link"
   routerLinkActive="link-active"
+  [routerLinkActiveOptions]="{exact:true}"
   >
     <mat-icon matListIcon>
       {{item.icon}}
@@ -24,6 +25,8 @@ style="height: 100%"
 
 <mat-list-item
   routerLink="login"
+  routerLinkActive="link-active"
+  [routerLinkActiveOptions]="{exact:true}"
 >
   <mat-icon matListIcon>account_circle</mat-icon>
   <div matLine>
