@@ -10,12 +10,12 @@ import { Router } from '@angular/router';
 export class MenuComponent implements OnInit {
 
   items = [
-    { name: "home", link: "dashboard", icon: "home", },
-    { name: "carte", link: "dashboard/cards", icon: "credit_card", },
-    { name: "movimenti", link: "dashboard/movements", icon: "receipt_long", },
-    { name: "trasferisci", link: "dashboard/transfer", icon: "paid", },
-    { name: "appuntamenti", link: "dashboard/appointments", icon: "events", },
-    { name: "tasse", link: "dashboard/taxes", icon: "summarize", },
+    { name: "home", link: "/dashboard", icon: "home", },
+    { name: "carte", link: "/dashboard/cards", icon: "credit_card", },
+    { name: "movimenti", link: "/dashboard/movements", icon: "receipt_long", },
+    { name: "trasferisci", link: "/dashboard/transfer", icon: "paid", },
+    { name: "appuntamenti", link: "/dashboard/appointments", icon: "events", },
+    { name: "tasse", link: "/dashboard/taxes", icon: "summarize", },
   ]
   user: string = "Alberto Brandolini"
   constructor(private router: Router) { }
