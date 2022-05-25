@@ -7,7 +7,6 @@ const routes: Routes = [
     loadChildren: () => import('./views/login/login.module').then( m => m.LoginModule),
   },
   { path: 'dashboard', loadChildren: () => import('./views/dashboard/dashboard.module').then(m => m.DashboardModule) },
-  { path: 'movements', loadChildren: () => import('./views/demmerda/demmerda.module').then(m => m.DemmerdaModule) },
   { path: '**', redirectTo: 'dashboard', pathMatch: 'full' },
 ];
 

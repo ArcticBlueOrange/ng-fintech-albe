@@ -7,7 +7,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { MovementsComponent } from './movements.component';
 import { MovementComponent } from './components/movement.component';
 
-
+import { MovementsRoutingModule } from './movements-routing.module';
 
 @NgModule({
   declarations: [
@@ -18,6 +18,7 @@ import { MovementComponent } from './components/movement.component';
     CommonModule,
     MaterialModule,
     SharedModule,
+    MovementsRoutingModule,
   ],
   exports: [
     MovementsComponent,

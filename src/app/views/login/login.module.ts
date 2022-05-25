@@ -9,7 +9,7 @@ import { LoginComponent } from './login.component';
 import { SignInComponent } from './components/sign-in.component';
 import { RegisterComponent } from './components/register.component';
 
-
+import { LoginRoutingModule } from './login-routing.module';
 
 @NgModule({
   declarations: [
@@ -22,6 +22,7 @@ import { RegisterComponent } from './components/register.component';
     MaterialModule,
     SharedModule,
     ReactiveFormsModule,
+    LoginRoutingModule,
   ],
   exports: [
     LoginComponent,

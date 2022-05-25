@@ -10,7 +10,7 @@ import { ContactFormComponent } from './components/contact-form.component';
 import { ContactListComponent } from './components/contact-list.component';
 import { ContactsComponent } from './components/contacts.component';
 
-
+import { TransferRoutingModule } from './transfer-routing.module';
 
 @NgModule({
   declarations: [
@@ -24,6 +24,7 @@ import { ContactsComponent } from './components/contacts.component';
     MaterialModule,
     SharedModule,
     ReactiveFormsModule,
+    TransferRoutingModule,
   ],
   exports: [
     TransferComponent,

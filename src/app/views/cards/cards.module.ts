@@ -8,6 +8,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { CardsComponent } from './cards.component';
 import { CardFormComponent } from './components/card-form.component'
 import { CardListComponent } from './components/card-list.component';
+import { CardsRoutingModule } from './cards-routing.module';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { CardListComponent } from './components/card-list.component';
     SharedModule,
     MaterialModule,
     ReactiveFormsModule,
+    CardsRoutingModule,
   ]
 })
 export class CardsModule { }

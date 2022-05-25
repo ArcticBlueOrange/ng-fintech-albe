@@ -11,7 +11,7 @@ import { AddressSelectorComponent } from './components/address-selector.componen
 import { ConfirmationButtonComponent } from './components/confirmation-button.component';
 import { DateSelectorComponent } from './components/date-selector.component';
 
-
+import { AppointmentsRoutingModule } from './appointments-routing.module';
 
 @NgModule({
   declarations: [
@@ -26,6 +26,7 @@ import { DateSelectorComponent } from './components/date-selector.component';
     SharedModule,
     ReactiveFormsModule,
     LeafletModule,
+    AppointmentsRoutingModule,
   ],
   exports: [
     AppointmentsComponent,

@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DemmerdaComponent } from './demmerda.component';
+import { TransferComponent } from './transfer.component';
 
-const routes: Routes = [{ path: '', component: DemmerdaComponent }];
+const routes: Routes = [
+  { path: '', component: TransferComponent },
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class DemmerdaRoutingModule { }
+export class TransferRoutingModule { }
