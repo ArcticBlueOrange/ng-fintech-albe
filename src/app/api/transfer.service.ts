@@ -10,12 +10,12 @@ export class TransferService {
 
   constructor(private http: HttpClient) { }
 
-  send(form:any): Observable<boolean> {
+  send(form: any): Observable<boolean> {
     const headers = { 'content-type': 'application/json' }
     const body = JSON.stringify(form);
     return this.http.post<boolean>(
       `${environment.apiUrl}/transfer`,
-      form, {headers: headers}
+      body, { headers: headers }
     )
   }
 }

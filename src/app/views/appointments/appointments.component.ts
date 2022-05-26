@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
 import { Location } from 'src/app/models/banks';
 import { DayWithSlot, DayWithSlots } from 'src/app/models/slots';
+import { AppointmentsService } from 'src/app/api/appointments.service';
 
 @Component({
   selector: 'alb-appointments',
@@ -14,25 +15,16 @@ export class AppointmentsComponent implements OnInit {
   // @ViewChild(MatDrawer) drawer!: MatDrawer;
   @ViewChild('drawer', { static: true }) public drawer!: MatDrawer;
   bankSelected: Location | null = null;
-  banks: Location[] = [
-    {
-      _id: "123",
-      name: "sede 1",
-      address: "via tal dei tali 1, Roma",
-      coords: [1,1]
-    },
-    {
-      _id: "456",
-      name: "sede 2",
-      address: "Via dalle palle, 6, Milano",
-      coords: [2,2]
-    },
-  ];
+  banks: Location[] = [];
   days: DayWithSlots[] = [
   ]
-  constructor() {}
+  constructor(private appointmentsService: AppointmentsService) {}
+
   ngOnInit(): void {
-   }
+    this.appointmentsService.locations().subscribe(
+      res => this.banks = res
+    )
+  }
 
   onSelected(b: Location) {
     this.drawer.open();
