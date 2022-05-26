@@ -2,7 +2,6 @@ import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/cor
 import { AbstractControl, FormArray, FormBuilder, FormGroup, FormGroupDirective, NgForm } from '@angular/forms';
 import { FormControl, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
-// import { CardForm } from 'src/app/models/cards';
 
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -27,7 +26,6 @@ export class CardFormComponent implements OnInit {
   // esempio diverso rispetto a quanto detto dalla guida preso da
   // https://stackoverflow.com/questions/51124575/angular-reactive-form-submit-and-clear-validation
 
-
   // @Output() cardFormEmit = new EventEmitter<CardForm>();
   cardForm = this.fb.group({
     type: ['', [Validators.required, Validators.pattern(/visa|mastercard/)]],
@@ -35,7 +33,7 @@ export class CardFormComponent implements OnInit {
     surname: ['', [Validators.required, Validators.minLength(2)]],
     number: ['', [Validators.required,
     Validators.minLength(16), Validators.maxLength(16),]],
-    pin: ['', [
+    csc: ['', [
       Validators.required,
       Validators.minLength(3), Validators.maxLength(3),]],
   });

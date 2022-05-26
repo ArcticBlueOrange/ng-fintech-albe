@@ -4,7 +4,9 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { AbstractControl } from '@angular/forms';
 import { MatDrawer } from '@angular/material/sidenav';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { CardsService } from 'src/app/api/cards.service';
 import { Card } from 'src/app/models/cards';
+import { CardifyPipe } from 'src/app/shared/cardify.pipe';
 import { CardFormComponent } from './components/card-form.component';
 
 @Component({
@@ -17,11 +19,10 @@ export class CardsComponent implements OnInit {
   @ViewChild('cardForm', { read: "any" }) form!: CardFormComponent;
   @ViewChild('#', { read: 'any' }) drawer!: MatDrawer;
 
-  constructor(private http: HttpClient,
-    private snackBar: MatSnackBar) { }
+  constructor(private cardsService: CardsService, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
-    this.http.get("http://localhost:3000/example-cards").subscribe((res) => this.cards = res as Card[]);
+    this.cardsService.getCards().subscribe((res) => this.cards = res)
   }
 
   openSnackBar(message: string, action: string) {
@@ -32,16 +33,35 @@ export class CardsComponent implements OnInit {
 
   handleNewCard(form: AbstractControl) {
     // TODO RECEIVE NEW CARD DATA FROM SERVER
-    let newCard: Card = {
-      _id: `${Date.now()}`,
-      amount: 0,
-      number: form.value.number,
-      owner: `${form.value.name} ${form.value.surname}`,
-      ownerId: "123",
-      type: form.value.type,
-    }
-    this.cards = [...this.cards, newCard];
+    const newCard = this.cardsService.addCard(form.value).subscribe((r) => {
+      this.cards = [
+        ...this.cards,
+        {
+          _id: r._id,
+          amount: r.amount,
+          number: r.number,
+          owner: r.owner,
+          ownerId: r.ownerId,
+          type: r.type,
+        }]
+    })
     this.openSnackBar("Card Added", "OK");
+  }
+
+  handleDelete(cardId: string) {
+    this.cardsService.delCard(cardId).subscribe(
+      r => {
+        console.log("'" + r);
+        console.log((this.cards))
+        console.log((cardId))
+        console.log("'" + r);
+        if (r) this.cards = this.cards.filter(
+          (c) => {
+            console.log(`${cardId}=${c._id} -> ${cardId === c._id}`)
+            return c._id != cardId;
+          });
+      }
+    )
   }
 
 }

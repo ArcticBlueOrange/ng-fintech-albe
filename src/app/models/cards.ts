@@ -7,13 +7,26 @@ export interface Card {
   amount: number;
 }
 
-// export interface CardForm {
-//   type:string;
-//   name:string;
-//   surname:string;
-//   number:string;
-//   pin:string;
-// }
+export interface CardWithMovements {
+  _id: string;
+  amount: number;
+  csc: string;
+  name: string;
+  number: string;
+  owner: string;
+  ownerId: string;
+  surname: string;
+  type: string;
+  movements: Movement[];
+}
+
+export interface CardForm {
+  type: string;
+  name: string;
+  surname: string;
+  number: string;
+  csc: string;
+}
 
 // //pre-precated
 // export type CardType = 'visa' | 'mastercard';

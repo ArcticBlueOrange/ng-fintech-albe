@@ -1,69 +1,34 @@
-<mat-card style="margin: auto;"
-  class="bg-sec"
->
+<mat-card style="margin: auto;" class="bg-sec">
 
   <mat-card-header>
     Le tue carte
   </mat-card-header>
   <mat-card-content>
-    <mat-list
-  style="
-  display:flex; flex-direction: column; align-items: stretch;"
-      >
+    <mat-list style="
+  display:flex; flex-direction: column; align-items: stretch;">
 
-<!-- style="max-width: 700px; margin: auto; outline: 1px solid black;" -->
-<!-- <alb-card
-    *ngFor="let card of cards"
-    [card]="card"
-  ></alb-card> -->
-    <!-- style="margin: auto; width: 100%;" -->
-<mat-list-item
-  style="margin: auto; width: 100%;"
-  *ngFor="let card of cards"
-  >
-<!-- todo personalize icon -->
-  <mat-icon matListIcon
-  >credit_card</mat-icon>
-  <!-- style="display: flex;" -->
-  <!-- <div> -->
-<!-- class="main alb-flex" -->
-    <div matLine> {{card.number | cardify}} </div>
-    <div matLine>
-      {{card.type | titlecase}}
-      -
-      € {{card.amount}}
-<!-- <mat-icon class="smaller">
-{{ card?.number}}</mat-icon> -->
-    </div>
-  <!-- </div> -->
-    <span style="flex-grow:2;"></span>
+      <mat-list-item style="margin: auto; width: 100%;" *ngFor="let card of cards">
+        <!-- todo personalize icon -->
+        <mat-icon matListIcon>credit_card</mat-icon>
+        <div matLine> {{card.number | cardify}} </div>
+        <div matLine>
+          {{card.type | titlecase}}
+          -
+          € {{card.amount}}
+        </div>
+        <span style="flex-grow:2;"></span>
 
-  <button mat-icon-button color="primary">
-    <mat-icon
-      matTooltip="Lista Movimenti"
-      matTooltipPosition="left"
-      aria-label="Bottone per lista movimenti"
-      (click)="handleMovimenti(card._id)"
-      >receipt_long</mat-icon>
-  </button>
-  <button mat-icon-button color="warn">
-    <mat-icon
-      matTooltip="Rimuovi"
-      matTooltipPosition="right"
-      aria-label="Bottone per rimuovere"
-      (click)="handleRimuovi(card._id)"
-      >delete_outline</mat-icon>
-  </button>
-</mat-list-item>
-<button
-  mat-raised-button
-  color="basic"
-  (click)="aggiungi.emit()"
-  > Aggiungi Carta
-</button>
-
-
-
+        <button mat-icon-button color="primary">
+          <mat-icon matTooltip="Lista Movimenti" matTooltipPosition="left" aria-label="Bottone per lista movimenti"
+            (click)="handleMovimenti(card._id)">receipt_long</mat-icon>
+        </button>
+        <button mat-icon-button color="warn">
+          <mat-icon matTooltip="Rimuovi" matTooltipPosition="right" aria-label="Bottone per rimuovere"
+            (click)="cancella.emit(card._id)">delete_outline</mat-icon>
+        </button>
+      </mat-list-item>
+      <button mat-raised-button color="basic" (click)="aggiungi.emit()"> Aggiungi Carta
+      </button>
 
     </mat-list>
   </mat-card-content>

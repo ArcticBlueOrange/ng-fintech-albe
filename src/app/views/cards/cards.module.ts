@@ -10,6 +10,7 @@ import { CardFormComponent } from './components/card-form.component'
 import { CardListComponent } from './components/card-list.component';
 import { CardsRoutingModule } from './cards-routing.module';
 
+import { CardsService } from 'src/app/api/cards.service';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,9 @@ import { CardsRoutingModule } from './cards-routing.module';
     MaterialModule,
     ReactiveFormsModule,
     CardsRoutingModule,
+  ],
+  providers: [
+    CardsService,
   ]
 })
 export class CardsModule { }

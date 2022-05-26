@@ -20,13 +20,10 @@ export class CardListComponent implements OnInit {
   handleMovimenti(cardId: string) {
     // TODO
     const index = this.cards.findIndex(card => card._id === cardId)
+    console.log(cardId)
     this.movimenti.emit(cardId);
     // console.log("Movimenti...")
     // console.log(this.cards[index].number)
-  }
-
-  handleRimuovi(cardId: string) {
-    this.cards = this.cards.filter(c => c._id != cardId);
   }
 
 }
