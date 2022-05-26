@@ -3,13 +3,24 @@
   <!-- style="height: 50%;" -->
 
   <mat-drawer-content>
-    <alb-card-list [cards]="cards" (aggiungi)="drawer.open()" (cancella)="handleDelete($event)"></alb-card-list>
+    <alb-card-list
+      [cards]="cards"
+      (aggiungi)="drawer.open()"
+      (cancella)="handleDelete($event)"
+      (movimenti)="handleMovements($event)"
+      ></alb-card-list>
   </mat-drawer-content>
 
 
-  <mat-drawer #drawer [mode]="'side'" [position]="'end'" style="width: 50%;">
-    <alb-card-form (formData)="handleNewCard($event);drawer.close()"
-      (annullaForm)="drawer.close();openSnackBar('Annullamento','OK')"></alb-card-form>
+  <mat-drawer
+    #drawer
+    [mode]="'side'"
+    [position]="'end'"
+    style="width: 50%;">
+    <alb-card-form
+      (formData)="handleNewCard($event);drawer.close()"
+      (annullaForm)="drawer.close();openSnackBar('Annullamento','OK')"
+      ></alb-card-form>
   </mat-drawer>
 
 </mat-drawer-container>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Card, Movement } from 'src/app/models/cards';
+import { CardsService } from 'src/app/api/cards.service';
+import { Card, CardWithMovements, Movement } from 'src/app/models/cards';
 
 @Component({
   selector: 'alb-movements',
@@ -10,98 +11,49 @@ import { Card, Movement } from 'src/app/models/cards';
 export class MovementsComponent implements OnInit {
 
   // form = this.fb.group({ });
-  cardSelect: string = 'ALL';
   rowDisp: number = 5;
-  cards: Card[] = [
-    {
-      _id: '123',
-      number: '1234567890',
-      ownerId: 'brand1',
-      owner: 'Marco Bertolini',
-      type: 'visa',
-      amount: 123,
-    },
-    {
-      _id: '456',
-      number: '09876542321',
-      ownerId: 'brand1',
-      owner: 'Marco Bertolini',
-      type: 'mastercard',
-      amount: 420,
-    },
-
-  ];
-
-  movements: Movement[] = [
-    {
-      _id: '1',
-      amount: 420.69,
-      cardId: '123',
-      description: `tutto comincio'
-      quando un principe nigeriano,
-      mio lontano parente,
-      mi scrisse che avevo ricevuto una gran
-      somma di denaro`,
-      timestamp: Date.now(),
-      title: 'withdrawal',
-      type: 'out',
-    },
-    {
-      _id: '2',
-      amount: 69.420,
-      cardId: '123',
-      description: 'lorem ipsum dolor sit amet, ',
-      timestamp: Date.now(),
-      title: 'Deposit',
-      type: 'in',
-    },
-    {
-      _id: '3',
-      amount: 420.69,
-      cardId: '456',
-      description: `Soldi inviati al principe`,
-      timestamp: Date.now(),
-      title: 'withdrawal',
-      type: 'out',
-    },
-    {
-      _id: '4',
-      amount: 69.420,
-      cardId: '456',
-      description: `Stipendio del mese di maggio`,
-      timestamp: Date.now(),
-      title: 'Deposit',
-      type: 'in',
-    },
-  ];
+  rowLimit: number = 0;
+  cards: CardWithMovements[] = [];
+  cardSelect: CardWithMovements | null = null;
   movementsDisp: Movement[] = [];
 
-  constructor(/*private fb: FormBuilder*/) {
-    for (let i = 0; i < 100; i++) {
-      this.movements.push(
-        { ...this.movements[i],
-          amount: Math.floor(Math.random() * 100000) / 100
-         }
-      )
-    }
+  constructor(private cardsService: CardsService) {
   }
   ngOnInit(): void {
-    this.movementsDisp = [...this.movements];
+    this.cardsService.getCards().subscribe(res => this.cards = res);
+    // this.movementsDisp = [...this.movements];
   }
-
 
   onSelectCard(_id: any) {
     this.rowDisp = 5;
-    this.movementsDisp = this.movements.filter(
-      (card) => {
-        return card.cardId === _id || _id === 'ALL';
-      }
-    );
+    this.cardSelect = this.cards.filter(c => c._id === _id)[0];
+    if (_id != 'ALL') {
+      this.cardsService.getMovements(_id).subscribe(
+        res => {
+          // console.log(res);
+          this.movementsDisp = res.data;
+          this.rowLimit = res.total;
+        }
+      );
+    }
+    // this.movementsDisp = this.movements.filter(
+    //   (card) => {
+    //     return card.cardId === _id || _id === 'ALL';
+    //   }
+    // );
   }
 
   onMore() {
-    this.rowDisp += 5;
+    // console.log(this.rowLimit)
+    if (this.cardSelect) {
+      this.cardsService.getMovements(this.cardSelect?._id, 5, this.rowDisp).subscribe(
+        res => {
+          // console.log(res.data);
+          this.movementsDisp = [...this.movementsDisp, ...res.data];
+          this.rowDisp = Math.min(this.rowDisp + 5, res.total);
+        });
+    }
+    // console.log(this.movementsDisp);
   }
-
 
 }

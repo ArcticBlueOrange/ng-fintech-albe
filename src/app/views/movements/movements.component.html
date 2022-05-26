@@ -1,11 +1,9 @@
-<!-- {{cardSelect}} -->
-<mat-form-field>
+<mat-form-field
+  style="width:100%;"
+  >
   <mat-select placeholder="Choose a card"
     (valueChange)="onSelectCard($event)"
     >
-    <!-- (openedChange)="onSelectCard($event)"
-    (selectionChange)="onSelectCard($event)" -->
-    <!-- [(value)]="cardSelect" -->
   <mat-option
     value="ALL" >
     ALL
@@ -14,13 +12,20 @@
     *ngFor="let card of cards"
     [value]="card._id"
     >
-    {{card.type}} - {{card.number}}
+    {{card.type | titlecase}} - {{card.number | cardify}}
   </mat-option>
   </mat-select>
 
 </mat-form-field>
-<mat-accordion>
 
+<mat-card-header *ngIf="cardSelect!=null">
+    Carta intestata a
+    {{cardSelect.name | titlecase}}
+    {{cardSelect.surname | titlecase}}
+    <!-- {{cardSelect | json}} -->
+</mat-card-header>
+
+<mat-accordion>
   <alb-movement *ngFor="let mov of movementsDisp.slice(0,rowDisp)"
   [dateLong]="mov.timestamp | date:'yyyy-mm-dd HH:MM:ss'"
   [dateShort]="mov.timestamp | date:'dd/mm/yyyy'"
@@ -30,16 +35,14 @@
   [cardId]="mov.cardId"
   [type]="mov.type"
   >
-  <!-- [mov]="mov" -->
   </alb-movement>
 
 
   <button mat-button
-  *ngIf="rowDisp < movementsDisp.length"
-  style="width: 100%;"
-  (click)="onMore()">
+    *ngIf="rowDisp < rowLimit"
+    style="width: 100%;"
+    (click)="onMore()">
     load more
-
   </button>
 
 </mat-accordion>

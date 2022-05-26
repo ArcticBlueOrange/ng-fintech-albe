@@ -17,13 +17,4 @@ export class CardListComponent implements OnInit {
   constructor(private http: HttpClient) { }
   ngOnInit(): void { }
 
-  handleMovimenti(cardId: string) {
-    // TODO
-    const index = this.cards.findIndex(card => card._id === cardId)
-    console.log(cardId)
-    this.movimenti.emit(cardId);
-    // console.log("Movimenti...")
-    // console.log(this.cards[index].number)
-  }
-
 }
