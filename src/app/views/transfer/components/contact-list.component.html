@@ -9,8 +9,7 @@
 <h5> I tuoi Contatti </h5>
 <mat-list>
   <mat-list-item
-    *ngFor="let c of contacts | filter: pippo.value: 'name'">
-
+    *ngFor="let c of contacts | filter: pippo.value: ['name','surname']">
   <mat-icon matListIcon>account_circle</mat-icon>
   <div matLine> {{c.name + " " + c.surname | titlecase}} </div>
   <div matLine> {{c.iban}} </div>

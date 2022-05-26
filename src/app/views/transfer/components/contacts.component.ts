@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+// import { ThisReceiver } from '@angular/compiler';
+import { Component, Input, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
+import { ContactsService } from 'src/app/api/contacts.service';
 import { Contact } from 'src/app/models/cards';
 
 @Component({
@@ -9,70 +11,54 @@ import { Contact } from 'src/app/models/cards';
   ]
 })
 export class ContactsComponent implements OnInit {
-
+  // todo dialog closes on external clicks
   listpage: boolean = true;
-  // todo spostare i contatti su server
   selectedContact: Contact | null = null;
-  contacts: Contact[] = [
-    {
-      _id: "123",
-      name: "pippo",
-      surname: "tizio",
-      iban: "0123456789",
-    },
-    {
-      _id: "456",
-      name: "pluto",
-      surname: "caio",
-      iban: "9876543210",
-    },
-    {
-      _id: "789",
-      name: "paperino",
-      surname: "sempronio",
-      iban: "0246802468",
-    },
-  ]
+  // TODO ADD AS INPUT instead to avoid multiple reload
+  contacts: Contact[] = [];
 
-  constructor(public dialogRef: MatDialogRef<ContactsComponent>) { }
-  ngOnInit(): void { }
+  constructor(public dialogRef: MatDialogRef<ContactsComponent>,
+    private contactsService: ContactsService) { }
+  ngOnInit(): void {
+    this.contactsService.getContacts().subscribe(
+      res => this.contacts = res.sort((a, b) => a.surname.localeCompare(b.surname)))
+  }
 
   handleNewContact(f: any) {
-    // todo change type from any
-    // console.log(f);
-    if (f["_id"] != undefined) {
-      // console.log("Edit:")
-      // console.log(this.contacts)
-      this.contacts = this.contacts.map(
-        c => f["_id"] === c._id ?
-          { ...f } :
-          c)
-    }
-    else {
-      // console.log("New")
-      this.contacts = [
-        ...this.contacts,
-        { _id: Date().toString(), ...f }
-      ];
+    if (f["_id"] != undefined) { // edit
+      this.contactsService.editContact(f).subscribe(
+        res => this.contacts = this.contacts.map(
+          c => f["_id"] === c._id ?
+            { ...f } :
+            c).sort((a, b) => a.surname.localeCompare(b.surname))
+      )
+    } else { // new
+      this.contactsService.addContact(f).subscribe(
+        res => this.contacts = [...this.contacts, res]
+          .sort((a, b) => a.surname.localeCompare(b.surname))
+      )
     }
     this.listpage = true;
     this.selectedContact = null;
   }
+
   handleSelect(f: any) {
     // todo change type from any
-    // console.log(f);
     this.selectedContact = this.contacts.filter(
       c => c._id === f["_id"])[0]
     this.dialogRef.close();
-    // emetti evento e cos
   }
-  handleEdit(f: any) {
+
+  handleEdit(f: any) { // move to edit page
     this.selectedContact = this.contacts.filter(
       c => c._id === f["_id"])[0];
     this.listpage = false;
   }
+
   handleRemove(f: any) {
-    this.contacts = this.contacts.filter(
-      c => c._id !== f["_id"])
+    this.contactsService.delContact(f._id).subscribe(
+      res => this.contacts = this.contacts.filter(
+        c => c._id !== f["_id"])
+    )
   }
 }

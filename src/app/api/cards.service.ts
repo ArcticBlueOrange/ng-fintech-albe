@@ -20,7 +20,8 @@ export class CardsService {
     const headers = { 'content-type': 'application/json' }
     const body = JSON.stringify(card);
     // console.log(body);
-    return this.http.post(`${environment.apiUrl}/cards`, card, { 'headers': headers }) as any;
+    return this.http.post(`${environment.apiUrl}/cards`,
+    card, { headers: headers }) as any;
     // todo replace any
   }
 

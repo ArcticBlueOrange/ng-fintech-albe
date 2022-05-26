@@ -5,22 +5,22 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class FilterPipe implements PipeTransform {
 
-  transform(items: any[], searchText: string, fieldName: string): any[] {
+  transform(items: any[], searchText: string, fields: string[]): any[] {
     if (!items) { return []; }
     if (!searchText) { return items; }
-    // if (searchText === 'c') {
-    //   return items.filter((c, i) =>
-    //   {
-    //     // return i % 2 != 0;
-    //     return c[fieldName] === 'pippo';
-    //   })
-    // }
+    //   return items.filter(item => {
+    //     (item[fields] as string).toLowerCase().indexOf(searchText.toLowerCase()) >= 0
+    // })
     return items.filter(item => {
-      // return searchText.toLowerCase().indexOf((item[fieldName] as string).toLowerCase()) >= 0;
-      // return searchText.toLowerCase().indexOf((item[fieldName] as string).toLowerCase()) >= 0;
-      return (item[fieldName] as string).toLowerCase().indexOf(searchText.toLowerCase()) >= 0;
-
-
+      // Object.keys(this).some(
+      //   (key) => (item[key] as string).toLowerCase().indexOf(searchText.toLowerCase()) >= 0
+      // )
+      for (let field of fields) {
+        if ((item[field] as string).toLowerCase().indexOf(searchText.toLowerCase()) >= 0)
+          return true;
+      }
+      return false;
+      // (item[fields] as string).toLowerCase().indexOf(searchText.toLowerCase()) >= 0
     })
   }
 
