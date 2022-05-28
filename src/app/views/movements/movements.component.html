@@ -27,8 +27,7 @@
 
 <mat-accordion>
   <alb-movement *ngFor="let mov of movementsDisp.slice(0,rowDisp)"
-  [dateLong]="mov.timestamp | date:'yyyy-mm-dd HH:MM:ss'"
-  [dateShort]="mov.timestamp | date:'dd/mm/yyyy'"
+  [date]="mov.timestamp"
   [title]="mov.title"
   [description]="mov.description"
   [amount]="mov.amount"

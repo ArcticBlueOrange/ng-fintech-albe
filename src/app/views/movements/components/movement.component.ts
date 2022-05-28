@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Timestamp } from 'rxjs';
 import { Movement } from 'src/app/models/cards';
 
 @Component({
@@ -10,8 +11,7 @@ export class MovementComponent implements OnInit {
 
   openPanel: boolean = false;
   // @Input() mov!: Movement;
-  @Input() dateLong: string | null = null;
-  @Input() dateShort: string | null = null;
+  @Input() date: number | null = null;
   @Input() title: string = '';
   @Input() description: string = '';
   @Input() amount: number = 0;
@@ -20,6 +20,8 @@ export class MovementComponent implements OnInit {
 
 
   constructor() { }
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    console.log(this.date)
+   }
 
 }

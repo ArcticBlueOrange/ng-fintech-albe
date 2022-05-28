@@ -52,7 +52,7 @@
         <mat-option
           *ngFor="let card of cards"
           [value]="card._id"
-          >{{card.number}}</mat-option>
+          >{{card.number | cardify}}</mat-option>
 
 
       </mat-select>
