@@ -1,7 +1,10 @@
 <mat-card>
   <mat-card-header>Sedi</mat-card-header>
   <mat-selection-list [multiple]="false">
-    <mat-list-option *ngFor="let b of banks" (click)="onClick(b)">
+    <mat-list-option
+      *ngFor="let b of banks"
+      (click)="bankSelected.emit(b)"
+      >
       <mat-icon matListIcon>business</mat-icon>
       <div matLine> {{b.name}} </div>
       <div matLine>

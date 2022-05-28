@@ -14,6 +14,11 @@
     #drawer
     style="width: 30%;"
     [position]="'end'">
+    <alb-leaflet
+      [coords]="bankSelected.coords"
+      [address]="bankSelected.address"
+      >
+    </alb-leaflet>
     <alb-date-selector
       [bankSelected]="bankSelected"
     >

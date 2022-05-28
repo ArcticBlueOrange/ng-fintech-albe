@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Inject, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Inject, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -15,13 +15,6 @@ import { ConfirmationButtonComponent } from './confirmation-button.component';
 export class DateSelectorComponent implements OnInit {
   @Input() bankSelected: Location | null = null;
   @Output() selectedTime = new EventEmitter<DayWithSlot>();
-  mapOptions = {
-    layers: [
-      tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: '...' })
-    ],
-    zoom: 5,
-    center: latLng(46.879966, -121.726909)
-  };
   daysWithSlots: DayWithSlots[] = [
     {
       day: '05/31/2022',
@@ -35,7 +28,6 @@ export class DateSelectorComponent implements OnInit {
       day: '06/02/2022',
       slots: [8, 10, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24,],
     },
-
   ];
   days: Date[] = [];
 
@@ -49,8 +41,9 @@ export class DateSelectorComponent implements OnInit {
   ngOnInit(): void {
     // request days
     this.days = this.daysWithSlots.map(d => new Date(d.day));
-    // console.log(this.days);
   }
+
+
 
   dateFilter = (d: Date | null): boolean => {
     if (d) {

@@ -1,28 +1,12 @@
-<div style="width:100%;height:100px"
-     leaflet
-     [leafletOptions]="mapOptions"
-     >
-</div>
 <mat-card-header>
 Appuntamento presso {{bankSelected?.name}}
 </mat-card-header>
-<!-- <button
-  mat-raised-button
-  color="primary"
-  style="width: 100%;"
-  [mat-dialog-close]="true"
-  (click)="openDialog()"
-  [disabled]="form.invalid"
-  >Conferma
-</button> -->
 
-<!-- aggiungere mappa -->
 
 <form [formGroup]="form"
   (ngSubmit)="onSubmit()"
 >
 <!-- todo change to modal -->
-<!-- ora non c'ho voglia -->
 <mat-form-field
   style="width: 100%;"
 >
@@ -43,7 +27,7 @@ Appuntamento presso {{bankSelected?.name}}
 <ng-container *ngIf="form.value.day != ''" >
 
 <mat-card-header>
-Giorno {{form.value.day}}
+{{form.value.day | date}}
 </mat-card-header>
 
   <mat-selection-list [multiple]="false"

@@ -12,6 +12,7 @@ import { ConfirmationButtonComponent } from './components/confirmation-button.co
 import { DateSelectorComponent } from './components/date-selector.component';
 
 import { AppointmentsRoutingModule } from './appointments-routing.module';
+import { LeafletComponent } from './components/leaflet.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { AppointmentsRoutingModule } from './appointments-routing.module';
     AddressSelectorComponent,
     ConfirmationButtonComponent,
     DateSelectorComponent,
+    LeafletComponent,
   ],
   imports: [
     CommonModule,
