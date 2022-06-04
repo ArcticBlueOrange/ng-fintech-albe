@@ -1,14 +1,7 @@
 import { Component, OnInit, ViewChild, Inject, Output, EventEmitter } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormControl, ValidationErrors, Validators, } from '@angular/forms';
-// import { ErrorStateMatcher } from '@angular/material/core';
-// import { debounceTime } from 'rxjs';
-// import { map } from 'rxjs/internal/operators/map';
 
-// export class MyErrorStateMatcher implements ErrorStateMatcher {
-//   isErrorState(control: FormControl | null): boolean {
-//     return control?.parent?.invalid || false;
-//   }
-// }
+
 export const lenValidator =
   (min:number, max: number) =>
     (c: AbstractControl): ValidationErrors | null => {

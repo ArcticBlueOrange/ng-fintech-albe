@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { CardifyPipe } from './cardify.pipe';
 import { FilterPipe } from './filter.pipe';
 import { EllipsePipe } from './ellipse.pipe';
+import { ValidatorsModule } from './validators/validators.module';
 
 
 
@@ -14,6 +15,7 @@ import { EllipsePipe } from './ellipse.pipe';
   ],
   imports: [
     CommonModule,
+    ValidatorsModule,
   ],
   exports: [
     CardifyPipe,
