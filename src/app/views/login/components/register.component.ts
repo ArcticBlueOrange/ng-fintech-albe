@@ -1,37 +1,7 @@
 import { Component, OnInit, ViewChild, Inject, Output, EventEmitter } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormControl, ValidationErrors, Validators, } from '@angular/forms';
+import { ValidatorsModule } from 'src/app/shared/validators/validators.module';
 
-
-export const lenValidator =
-  (min:number, max: number) =>
-    (c: AbstractControl): ValidationErrors | null => {
-      if (!c.value) {
-        return {
-          length: {
-            min:min,
-            max:max,
-          }
-        }
-      }
-      if (c.value.length < min) {
-        return {
-          length: {
-            min: min,
-            value: c.value.length - min,
-          }
-        }
-      }
-      if (c.value.length > max) {
-        return {
-          length: {
-            max: max,
-            value: c.value.length - max,
-          }
-        }
-      }
-      return null;
-
-    };
 
 @Component({
   selector: 'alb-register',
@@ -42,7 +12,6 @@ export const lenValidator =
 export class RegisterComponent implements OnInit {
 
   // TODO MOLTO SIMILE AL COMP. SIGN-IN // UNIRE?
-  // @ViewChild('f') form: NgForm | null = null;
   registerForm = this.fb.group({
     name: ['', [Validators.required]],
     surname: ['', [Validators.required]],

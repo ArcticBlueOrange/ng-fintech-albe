@@ -26,17 +26,3 @@ export class TransferValidatorDirective implements Validator {
     return transferValidator(control);
   }
 }
-
-// Validatore asincrono con dipendenze (Reactive Forms)
-// In quest'ultimo caso, la versione per i Template-Driven sarà una
-// Direttiva che utilizzerà questo servizio.
-// @Injectable({ providedIn: 'root' })
-// export class transferValidatorService {
-//   constructor(private transferService: transferValidatorService) {}
-//   validate(): AsyncValidatorFn {
-//     return (...) => {
-//       return this.transferService.getValidators.pipe(...);
-//     }
-//   }
-// }
-

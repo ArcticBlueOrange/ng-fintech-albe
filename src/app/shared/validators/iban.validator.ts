@@ -24,17 +24,3 @@ export class IbanValidatorDirective implements Validator {
     return ibanValidator(control);
   }
 }
-
-// Validatore asincrono con dipendenze (Reactive Forms)
-// In quest'ultimo caso, la versione per i Template-Driven sarà una
-// Direttiva che utilizzerà questo servizio.
-// @Injectable({ providedIn: 'root' })
-// export class ibanValidatorService {
-//   constructor(private ibanService: ibanValidatorService) {}
-//   validate(): AsyncValidatorFn {
-//     return (...) => {
-//       return this.ibanService.getValidators.pipe(...);
-//     }
-//   }
-// }
-

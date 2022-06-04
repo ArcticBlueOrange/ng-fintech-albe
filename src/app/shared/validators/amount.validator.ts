@@ -25,7 +25,7 @@ export function amountValidator(c: AbstractControl): ValidationErrors | null {
 
 // Direttiva (Template-Driven Forms), a sua volta usa la funzione precedente
 @Directive({
-  selector: "[amountPositive]",
+  selector: "[amountValid]",
   providers: [{
     provide: NG_VALIDATORS,
     useExisting: amountValidator
@@ -36,17 +36,3 @@ export class AmountValidatorDirective implements Validator {
     return amountValidator(control);
   }
 }
-
-// Validatore asincrono con dipendenze (Reactive Forms)
-// In quest'ultimo caso, la versione per i Template-Driven sarà una
-// Direttiva che utilizzerà questo servizio.
-// @Injectable({ providedIn: 'root' })
-// export class amountValidatorService {
-//   constructor(private amountService: amountValidatorService) {}
-//   validate(): AsyncValidatorFn {
-//     return (...) => {
-//       return this.amountService.getValidators.pipe(...);
-//     }
-//   }
-// }
-

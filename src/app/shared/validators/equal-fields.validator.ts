@@ -1,4 +1,4 @@
-import { Directive, Injectable } from "@angular/core";
+import { Directive, Injectable, Input } from "@angular/core";
 import { AbstractControl, ValidationErrors, Validator, AsyncValidatorFn, NG_VALIDATORS } from "@angular/forms";
 import { AuthService } from "src/app/api/auth.service";
 
@@ -22,6 +22,8 @@ export function equalFieldsValidator(c: AbstractControl): ValidationErrors | nul
   }]
  })
 export class EqualFieldsValidatorDirective implements Validator {
+  @Input("passwordMatch") psw = "";
+
   validate(control: AbstractControl): ValidationErrors | null {
     return equalFieldsValidator(control);
   }

@@ -27,16 +27,5 @@ export class CodiceFiscaleValidatorDirective implements Validator {
   }
 }
 
-// Validatore asincrono con dipendenze (Reactive Forms)
-// In quest'ultimo caso, la versione per i Template-Driven sarà una
-// Direttiva che utilizzerà questo servizio.
-// @Injectable({ providedIn: 'root' })
-// export class codiceFiscaleValidatorService {
-//   constructor(private codiceFiscaleService: codiceFiscaleValidatorService) {}
-//   validate(): AsyncValidatorFn {
-//     return (...) => {
-//       return this.codiceFiscaleService.getValidators.pipe(...);
-//     }
-//   }
-// }
+// TODO
 

@@ -14,8 +14,8 @@ import { CodiceFiscaleValidatorDirective } from './codice-fiscale.validator';
   declarations: [
     EqualFieldsValidatorDirective,
     AmountValidatorDirective,
-    // TransferValidatorDirective,
     IbanValidatorDirective,
+    // TransferValidatorDirective,
     // CardIdValidatorDirective,
     CodiceFiscaleValidatorDirective,
   ],

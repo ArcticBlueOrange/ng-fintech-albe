@@ -16,26 +16,6 @@ import { ContactsComponent } from './components/contacts.component';
 })
 export class TransferComponent implements OnInit {
   cards: Card[] = [];
-  // contacts: Contact[] = [
-  // {
-  //   _id: "123",
-  //   name: "pippo",
-  //   surname: "tizio",
-  //   iban: "0123456789",
-  // },
-  // {
-  //   _id: "456",
-  //   name: "pluto",
-  //   surname: "caio",
-  //   iban: "9876543210",
-  // },
-  // {
-  //   _id: "789",
-  //   name: "paperino",
-  //   surname: "sempronio",
-  //   iban: "0246802468",
-  // },
-  // ];
   form = this.fb.group({
     name: ['', [Validators.required]],
     surname: ['', [Validators.required]],
@@ -68,9 +48,7 @@ export class TransferComponent implements OnInit {
 
   openDialog() {
     const dialogRef = this.dialog.open(ContactsComponent, {
-      // height: '1400px',
       width: '600px',
-      // data: this.contacts
     });
 
     dialogRef.afterClosed().subscribe(result => {
