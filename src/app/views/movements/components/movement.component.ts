@@ -21,7 +21,7 @@ export class MovementComponent implements OnInit {
 
   constructor() { }
   ngOnInit(): void {
-    console.log(this.date)
+    // console.log(this.date)
    }
 
 }

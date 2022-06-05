@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BehaviorSubject, combineLatest, first, last, map, Observable, scan, switchMap, tap } from 'rxjs';
 import { CardsService } from 'src/app/api/cards.service';
 import { Card, CardWithMovements, Movement } from 'src/app/models/cards';
 
@@ -10,50 +11,45 @@ import { Card, CardWithMovements, Movement } from 'src/app/models/cards';
 })
 export class MovementsComponent implements OnInit {
 
-  // form = this.fb.group({ });
-  rowDisp: number = 5;
-  rowLimit: number = 0;
-  cards: CardWithMovements[] = [];
-  cardSelect: CardWithMovements | null = null;
-  movementsDisp: Movement[] = [];
+  cards$ = new BehaviorSubject<Card[]>([]);
+  selectedCardId$ = new BehaviorSubject<string>('');
+  cardSelect$ = combineLatest([this.cards$, this.selectedCardId$]).pipe(
+    map(([cards, selectedCardId]) => cards.filter(card => card._id === selectedCardId)[0]),
+  )
+  total$ = new BehaviorSubject<number>(0);
+  rows$ = new BehaviorSubject<number>(5);
+  movements$ = new BehaviorSubject<Movement[]>([]);
+  // shouldLoadMore$ = new BehaviorSubject<boolean>(false);
 
-  constructor(private cardsService: CardsService) {
-  }
+  constructor(private cardsService: CardsService) { }
+
   ngOnInit(): void {
-    this.cardsService.getCards().subscribe(res => this.cards = res);
-    // this.movementsDisp = [...this.movements];
-  }
-
-  onSelectCard(_id: any) {
-    this.rowDisp = 5;
-    this.cardSelect = this.cards.filter(c => c._id === _id)[0];
-    if (_id != 'ALL') {
-      this.cardsService.getMovements(_id).subscribe(
-        res => {
-          // console.log(res);
-          this.movementsDisp = res.data;
-          this.rowLimit = res.total;
-        }
-      );
-    }
-    // this.movementsDisp = this.movements.filter(
-    //   (card) => {
-    //     return card.cardId === _id || _id === 'ALL';
-    //   }
-    // );
+    this.cardsService.getCards().subscribe(res => this.cards$.next(res));
+    this.selectedCardId$.subscribe(
+      _id => {
+        if (_id && _id != 'ALL')
+          this.cardsService.getMovements(_id).subscribe(
+            res => {
+              this.movements$.next(res.data);
+              this.total$.next(res.total);
+            }
+          );
+        this.rows$.next(5);
+      }
+    );
   }
 
   onMore() {
-    // console.log(this.rowLimit)
-    if (this.cardSelect) {
-      this.cardsService.getMovements(this.cardSelect?._id, 5, this.rowDisp).subscribe(
+    if (this.selectedCardId$.value) {
+      this.cardsService.getMovements(this.selectedCardId$.value, 5, this.rows$.value).subscribe(
         res => {
-          // console.log(res.data);
-          this.movementsDisp = [...this.movementsDisp, ...res.data];
-          this.rowDisp = Math.min(this.rowDisp + 5, res.total);
+          console.log(res)
+          this.movements$.next(
+            [...this.movements$.value, ...res.data]
+          );
+          this.rows$.next(Math.min(this.rows$.value + 5, res.total));
         });
     }
-    // console.log(this.movementsDisp);
   }
 
 }

@@ -1,15 +1,12 @@
+{{rows$.value}}
 <mat-form-field
   style="width:100%;"
   >
   <mat-select placeholder="Choose a card"
-    (valueChange)="onSelectCard($event)"
+    (valueChange)="selectedCardId$.next($event)"
     >
   <mat-option
-    value="ALL" >
-    ALL
-  </mat-option>
-  <mat-option
-    *ngFor="let card of cards"
+    *ngFor="let card of cards$.value"
     [value]="card._id"
     >
     {{card.type | titlecase}} - {{card.number | cardify}}
@@ -18,26 +15,29 @@
 
 </mat-form-field>
 
-<mat-card *ngIf="cardSelect!=null">
+<!-- <mat-card *ngIf="cardSelect!=null"> -->
+<mat-card *ngIf="selectedCardId$.value">
   <mat-card-header>
       <h3>
         Carta intestata a
-        {{cardSelect.name | titlecase}}
-        {{cardSelect.surname | titlecase}}
-        <!-- {{cardSelect | json}} -->
+        <!-- {{cardSelect$.get('name') | async}} -->
+        <!-- {{cardSelect.name | titlecase}}
+        {{cardSelect.surname | titlecase}} -->
       </h3>
   </mat-card-header>
   <mat-card-content>
     Credito sulla carta:
-    <span [ngStyle]="{ color: cardSelect.amount <= 0 ? 'red' : 'green'}">
-      {{cardSelect.amount | number }} €
-    </span>
+    <!-- <span [ngStyle]="{ color: cardSelect.amount <= 0 ? 'red' : 'green'}">
+      {{cardSelect.amount | number }} € </span> -->
+      <hr>
+      {{total$.value}} movimenti registrati:
   </mat-card-content>
 </mat-card>
 
 
 <mat-accordion>
-  <alb-movement *ngFor="let mov of movementsDisp.slice(0,rowDisp)"
+  <!-- <alb-movement *ngFor="let mov of movementsDisp.slice(0,rowDisp)" -->
+  <alb-movement *ngFor="let mov of movements$.value.slice(0,rows$.value)"
   [date]="mov.timestamp"
   [title]="mov.title"
   [description]="mov.description"
@@ -48,7 +48,7 @@
   </alb-movement>
 
   <button mat-button
-    *ngIf="rowDisp < rowLimit"
+    *ngIf="rows$.value < total$.value"
     style="width: 100%;"
     (click)="onMore()">
     load more
@@ -57,3 +57,8 @@
 </mat-accordion>
 
 <hr>
+
+<pre>
+
+ {{ movements$ | async | json}}
+</pre>
