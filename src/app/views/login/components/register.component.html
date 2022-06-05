@@ -43,8 +43,6 @@
       </mat-form-field>
     </div>
 
-      <!-- doppio campo psw -->
-      <!-- <mat-icon>lock</mat-icon> -->
       <mat-form-field  class="alb-textfield">
         <input
           matInput
@@ -53,13 +51,9 @@
           formControlName="pass1"
           placeholder="Password">
       <mat-icon matSuffix (click)="pswVisible = !pswVisible">{{pswVisible ? 'visibility_on' : 'visibility_off'}}</mat-icon>
-      <mat-error
-        *ngIf="registerForm.errors"
-        >
-        {{2*2}}
-      </mat-error>
       </mat-form-field>
-      <!-- <mat-icon>lock</mat-icon> -->
+      <!-- TODO other VALIDATION ERRORs -->
+      <!-- <mat-error *ngIf="true" > Password troppo corta </mat-error> -->
       <mat-form-field  class="alb-textfield">
         <input
           matInput
@@ -70,13 +64,12 @@
           >
       <mat-icon matSuffix (click)="pswVisible = !pswVisible">{{pswVisible ? 'visibility_on' : 'visibility_off'}}</mat-icon>
       </mat-form-field>
-      <!-- TODO PSW MUST MATCH -->
-      <!-- TODO MINIMAL PSWD REQUIREMENTS -->
+      <mat-error *ngIf="registerForm.errors?.['equalFields']"> Le password non corrispondono </mat-error>
     <button
         mat-raised-button
         color="primary"
+        [disabled]="registerForm.invalid"
         type="submit">Registrati</button>
-        <!-- [disabled]="registerForm.invalid" -->
       <p>
         <a
           color="primary"

@@ -1,30 +1,15 @@
 import { Directive, Injectable, Input } from "@angular/core";
-import { AbstractControl, ValidationErrors, Validator, AsyncValidatorFn, NG_VALIDATORS } from "@angular/forms";
+import { AbstractControl, ValidationErrors, Validator, AsyncValidatorFn, NG_VALIDATORS, ValidatorFn } from "@angular/forms";
 import { AuthService } from "src/app/api/auth.service";
 
-export function equalFieldsValidator(c: AbstractControl): ValidationErrors | null {
-  if (!c.value) {
+export const equalFieldsValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
+  const pass1 = control.get('pass1')?.value;
+  const pass2 = control.get('pass2')?.value;
+
+  if ( (pass1 != pass2) && pass1 && pass2) {
     return {
-      emptyField: "Valori mancanti"
+      equalFields: "Password non corrispondono"
     }
   }
-  const p1 = c.get('password');
-  const p2 = c.get('altrapassword');
-  return p1 == p2 ? null : { pswMatch: "le password non corrispondono" }
-}
-
-// Direttiva (Template-Driven Forms), a sua volta usa la funzione precedente
-@Directive({
-  selector: "[passwordMatch]",
-  providers: [{
-    provide: NG_VALIDATORS,
-    useExisting: equalFieldsValidator
-  }]
- })
-export class EqualFieldsValidatorDirective implements Validator {
-  @Input("passwordMatch") psw = "";
-
-  validate(control: AbstractControl): ValidationErrors | null {
-    return equalFieldsValidator(control);
-  }
-}
+  return null;
+};

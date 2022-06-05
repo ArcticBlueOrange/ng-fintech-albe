@@ -53,18 +53,29 @@
           *ngFor="let card of cards"
           [value]="card._id"
           >{{card.number | cardify}}</mat-option>
-
-
       </mat-select>
     </mat-form-field>
-
-
+    <mat-error
+      *ngIf="form.get('cardId')?.errors?.['noCard']">
+      Carta Invalida
+    </mat-error>
+    <mat-error
+      *ngIf="form.errors?.['outOfMoney']">
+      Non hai abbastanza denaro
+    </mat-error>
+    <!-- <div>
+      {{form.get('cardId')?.errors | json}}
+    </div> -->
+    <!-- <div>
+      Form valido: {{form.valid}}
+      Form invalido: {{form.invalid}}
+    </div> -->
 
     <button
       mat-raised-button
       color="primary"
       type="submit"
-      [disabled]="form.invalid"
+      [disabled]="!form.valid"
       (click)="openSnackBar('Trasferimento effettuato!','OK')"
       >Avvia Trasferimento</button>
 

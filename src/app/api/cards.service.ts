@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { from, map, Observable, of, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Card, CardForm, CardWithMovements, Movement } from '../models/cards';
 
@@ -11,7 +11,6 @@ export class CardsService {
 
   constructor(private http: HttpClient) { }
 
-  // getCards(): Observable<Card[]> {
   getCards(): Observable<CardWithMovements[]> {
     return this.http.get<CardWithMovements[]>(`${environment.apiUrl}/cards`);
   }
@@ -19,9 +18,8 @@ export class CardsService {
   addCard(card: CardForm): Observable<CardWithMovements> {
     const headers = { 'content-type': 'application/json' }
     const body = JSON.stringify(card);
-    // console.log(body);
     return this.http.post(`${environment.apiUrl}/cards`,
-    card, { headers: headers }) as any;
+      card, { headers: headers }) as any;
     // todo replace any
   }
 
@@ -32,9 +30,10 @@ export class CardsService {
       return of(false);
   }
 
-    // todo replace any to movement[], total
+  // TODO COME INVERTIRE IL SORT?
   getMovements(cardId: string, limit = 5, offset = 0): Observable<any> {
-    return this.http.get(`${environment.apiUrl}/cards/${cardId}/movements`,
-      { params: { limit: limit, offset: offset } });
+    return this.http.get<Movement[]>(`${environment.apiUrl}/cards/${cardId}/movements`,
+      { params: { limit: limit, offset: offset } })
+      ;
   }
 }

@@ -1,28 +1,22 @@
-import { Directive, Injectable } from "@angular/core";
+import { ComponentFactoryResolver, Directive, Injectable } from "@angular/core";
 import { AbstractControl, ValidationErrors, Validator, AsyncValidatorFn, NG_VALIDATORS } from "@angular/forms";
+import { from, Observable, of } from "rxjs";
+import { catchError, filter, map, mergeMap, switchMap, tap } from "rxjs/operators";
+import { CardsService } from "src/app/api/cards.service";
 
-export function transferValidator(c: AbstractControl): ValidationErrors | null {
-  if (!c.value) {
-    return {
-      emptyField: "Valori mancanti"
+// validatore asincrono che prende il servizio
+@Injectable({ providedIn: 'root' })
+export class TransferValidator {
+  constructor(private cardsService: CardsService) { }
+
+  validate(): AsyncValidatorFn {
+    return (c: AbstractControl): Observable<ValidationErrors | null> => {
+      return this.cardsService.getCards().pipe(
+        mergeMap(cardsWithMovements => from(cardsWithMovements)),
+        filter(card => card._id === c.get('cardId')?.value),
+        map(card => card.amount < c.get('amount')?.value ? { outOfMoney: "Non abbastanza denaro sulla carta" } : null),
+        catchError(() => of(null)),
+      );
     }
-  }
-
-  //... verificare importo e carta
-
-  return null;
-}
-
-// Direttiva (Template-Driven Forms), a sua volta usa la funzione precedente
-@Directive({
-  selector: "[transferAllowed]",
-  providers: [{
-    provide: NG_VALIDATORS,
-    useExisting: transferValidator
-  }]
- })
-export class TransferValidatorDirective implements Validator {
-  validate(control: AbstractControl): ValidationErrors | null {
-    return transferValidator(control);
   }
 }

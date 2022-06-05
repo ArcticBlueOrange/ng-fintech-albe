@@ -4,6 +4,7 @@ import { CardifyPipe } from './cardify.pipe';
 import { FilterPipe } from './filter.pipe';
 import { EllipsePipe } from './ellipse.pipe';
 import { ValidatorsModule } from './validators/validators.module';
+// import { SortPipe } from './sort.pipe';
 
 
 
@@ -12,6 +13,7 @@ import { ValidatorsModule } from './validators/validators.module';
     CardifyPipe,
     FilterPipe,
     EllipsePipe,
+    // SortPipe,
   ],
   imports: [
     CommonModule,
@@ -21,6 +23,7 @@ import { ValidatorsModule } from './validators/validators.module';
     CardifyPipe,
     FilterPipe,
     EllipsePipe,
+    // SortPipe,
   ]
 })
 export class SharedModule { }

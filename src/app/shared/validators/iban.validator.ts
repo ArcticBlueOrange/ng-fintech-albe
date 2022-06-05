@@ -1,6 +1,7 @@
 import { Directive, Injectable } from "@angular/core";
 import { AbstractControl, ValidationErrors, Validator, AsyncValidatorFn, NG_VALIDATORS } from "@angular/forms";
 
+// funzione (per reactive forms)
 export function ibanValidator(c: AbstractControl): ValidationErrors | null {
   if (!c.value) {
     return {
@@ -8,19 +9,10 @@ export function ibanValidator(c: AbstractControl): ValidationErrors | null {
     }
   }
   //... verifica la validita dell'iban
-  return null;
-}
-
-// Direttiva (Template-Driven Forms), a sua volta usa la funzione precedente
-@Directive({
-  selector: "[validIBAN]",
-  providers: [{
-    provide: NG_VALIDATORS,
-    useExisting: ibanValidator
-  }]
- })
-export class IbanValidatorDirective implements Validator {
-  validate(control: AbstractControl): ValidationErrors | null {
-    return ibanValidator(control);
-  }
+  // regole per iban internazionali: https://bank.codes/iban/structure/
+  // esempio di iban italiano (senza spazi):
+  // IT 60 X 0542811101000000123456
+  const reg = /^\w{2}\d{2}[\w][\d]{22}$/;
+  // console.log(c.value.match(reg));
+  return !c.value.match(reg) ? { ibanError: "Iban non valido" } : null;
 }

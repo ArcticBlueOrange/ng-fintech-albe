@@ -1,6 +1,7 @@
 import { Directive, Injectable } from "@angular/core";
-import { AbstractControl, ValidationErrors, Validator, AsyncValidatorFn, NG_VALIDATORS } from "@angular/forms";
+import { AbstractControl, ValidationErrors, Validator, AsyncValidatorFn, NG_VALIDATORS, ValidatorFn } from "@angular/forms";
 
+// funzione (per reactive forms)
 export function amountValidator(c: AbstractControl): ValidationErrors | null {
   if (!c.value) {
     return {
@@ -10,7 +11,7 @@ export function amountValidator(c: AbstractControl): ValidationErrors | null {
   const v = parseFloat(c.value);
   if (isNaN(v)) {
     return {
-      stringfield: `${v} non è un numero`
+      stringField: `${v} non è un numero`
     }
   }
 

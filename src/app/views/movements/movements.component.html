@@ -18,12 +18,23 @@
 
 </mat-form-field>
 
-<mat-card-header *ngIf="cardSelect!=null">
-    Carta intestata a
-    {{cardSelect.name | titlecase}}
-    {{cardSelect.surname | titlecase}}
-    <!-- {{cardSelect | json}} -->
-</mat-card-header>
+<mat-card *ngIf="cardSelect!=null">
+  <mat-card-header>
+      <h3>
+        Carta intestata a
+        {{cardSelect.name | titlecase}}
+        {{cardSelect.surname | titlecase}}
+        <!-- {{cardSelect | json}} -->
+      </h3>
+  </mat-card-header>
+  <mat-card-content>
+    Credito sulla carta:
+    <span [ngStyle]="{ color: cardSelect.amount <= 0 ? 'red' : 'green'}">
+      {{cardSelect.amount | number }} €
+    </span>
+  </mat-card-content>
+</mat-card>
+
 
 <mat-accordion>
   <alb-movement *ngFor="let mov of movementsDisp.slice(0,rowDisp)"
@@ -35,7 +46,6 @@
   [type]="mov.type"
   >
   </alb-movement>
-
 
   <button mat-button
     *ngIf="rowDisp < rowLimit"
