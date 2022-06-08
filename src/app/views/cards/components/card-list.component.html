@@ -19,11 +19,21 @@
         <span style="flex-grow:2;"></span>
 
         <button mat-icon-button color="primary">
-          <mat-icon matTooltip="Lista Movimenti" matTooltipPosition="left" aria-label="Bottone per lista movimenti"
-            (click)="movimenti.emit(card._id)">receipt_long</mat-icon>
+          <mat-icon
+            matTooltip="Lista Movimenti"
+            matTooltipPosition="left"
+            aria-label="Bottone per lista movimenti"
+            (click)="movimenti.emit(card._id)">
+            receipt_long
+          </mat-icon>
         </button>
-        <button mat-icon-button color="warn">
-          <mat-icon matTooltip="Rimuovi" matTooltipPosition="right" aria-label="Bottone per rimuovere"
+        <button
+          mat-icon-button
+          color="warn">
+          <mat-icon
+            matTooltip="Rimuovi"
+            matTooltipPosition="right"
+            aria-label="Bottone per rimuovere"
             (click)="cancella.emit(card._id)">delete_outline</mat-icon>
         </button>
       </mat-list-item>

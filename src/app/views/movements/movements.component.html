@@ -1,9 +1,9 @@
-{{rows$.value}}
+<!-- {{rows$.value}} -->
 <mat-form-field
   style="width:100%;"
   >
   <mat-select placeholder="Choose a card"
-    (valueChange)="selectedCardId$.next($event)"
+    (valueChange)="onSelect($event)"
     >
   <mat-option
     *ngFor="let card of cards$.value"
@@ -15,28 +15,9 @@
 
 </mat-form-field>
 
-<!-- <mat-card *ngIf="cardSelect!=null"> -->
-<mat-card *ngIf="selectedCardId$.value">
-  <mat-card-header>
-      <h3>
-        Carta intestata a
-        <!-- {{cardSelect$.get('name') | async}} -->
-        <!-- {{cardSelect.name | titlecase}}
-        {{cardSelect.surname | titlecase}} -->
-      </h3>
-  </mat-card-header>
-  <mat-card-content>
-    Credito sulla carta:
-    <!-- <span [ngStyle]="{ color: cardSelect.amount <= 0 ? 'red' : 'green'}">
-      {{cardSelect.amount | number }} € </span> -->
-      <hr>
-      {{total$.value}} movimenti registrati:
-  </mat-card-content>
-</mat-card>
-
+{{total$ | async}} Movimenti; {{rows$ | async}} mostrati
 
 <mat-accordion>
-  <!-- <alb-movement *ngFor="let mov of movementsDisp.slice(0,rowDisp)" -->
   <alb-movement *ngFor="let mov of movements$.value.slice(0,rows$.value)"
   [date]="mov.timestamp"
   [title]="mov.title"
@@ -50,6 +31,8 @@
   <button mat-button
     *ngIf="rows$.value < total$.value"
     style="width: 100%;"
+    #loadMore
+    id="loadMore"
     (click)="onMore()">
     load more
   </button>
@@ -58,7 +41,6 @@
 
 <hr>
 
-<pre>
-
+<!-- <pre>
  {{ movements$ | async | json}}
-</pre>
+</pre> -->

@@ -5,6 +5,7 @@ import { AbstractControl } from '@angular/forms';
 import { MatDrawer } from '@angular/material/sidenav';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
 import { CardsService } from 'src/app/api/cards.service';
 import { Card } from 'src/app/models/cards';
 import { CardFormComponent } from './components/card-form.component';
@@ -15,14 +16,13 @@ import { CardFormComponent } from './components/card-form.component';
 })
 export class CardsComponent implements OnInit {
 
-  cards: Card[] = [];
+  cards$ = new BehaviorSubject<Card[]>([]);
   @ViewChild('cardForm', { read: "any" }) form!: CardFormComponent;
-  @ViewChild('#', { read: 'any' }) drawer!: MatDrawer;
 
   constructor(private cardsService: CardsService, private snackBar: MatSnackBar, private router: Router) { }
 
   ngOnInit(): void {
-    this.cardsService.getCards().subscribe((res) => this.cards = res)
+    this.cardsService.getCards().subscribe((val) => this.cards$.next(val));
   }
 
   openSnackBar(message: string, action: string) {
@@ -32,10 +32,9 @@ export class CardsComponent implements OnInit {
   }
 
   handleNewCard(form: AbstractControl) {
-    // TODO RECEIVE NEW CARD DATA FROM SERVER
     const newCard = this.cardsService.addCard(form.value).subscribe((r) => {
-      this.cards = [
-        ...this.cards,
+      this.cards$.next([
+        ...this.cards$.value,
         {
           _id: r._id,
           amount: r.amount,
@@ -43,7 +42,10 @@ export class CardsComponent implements OnInit {
           owner: r.owner,
           ownerId: r.ownerId,
           type: r.type,
-        }]
+
+        }
+      ]
+      );
     })
     this.openSnackBar("Card Added", "OK");
   }
@@ -51,18 +53,15 @@ export class CardsComponent implements OnInit {
   handleDelete(cardId: string) {
     this.cardsService.delCard(cardId).subscribe(
       r => {
-        if (r) this.cards = this.cards.filter(
-          (c) => {
-            // console.log(`${cardId}=${c._id} -> ${cardId === c._id}`)
-            return c._id != cardId;
-          });
+        if (r) this.cards$.next(
+          this.cards$.value.filter((c) => c._id != cardId)
+        )
       }
     )
   }
 
   handleMovements(cardId: string) {
-    console.log(cardId);
-    this.router.navigate([`/dashboard/movements`]);
+    this.router.navigate([`/dashboard/movements/${cardId}`]);
   }
 
 }

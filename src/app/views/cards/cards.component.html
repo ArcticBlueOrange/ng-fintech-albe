@@ -2,7 +2,7 @@
 
   <mat-drawer-content>
     <alb-card-list
-      [cards]="cards"
+      [cards]="cards$.value"
       (aggiungi)="drawer.open()"
       (cancella)="handleDelete($event)"
       (movimenti)="handleMovements($event)"
