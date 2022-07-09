@@ -1,15 +1,11 @@
 
 <mat-card class="alb-form">
-  <!-- #f="ngForm" -->
   <form
     class="alb-flex"
     [formGroup]="registerForm"
     (ngSubmit)="onSubmit()"
     >
     <div class="alb-textfield">
-      <!-- <mat-icon>account_circle</mat-icon> -->
-          <!-- required
-          ngModel -->
       <mat-form-field >
         <input
           matInput
@@ -21,7 +17,6 @@
     </div>
 
     <div class="alb-textfield">
-      <!-- <mat-icon>account_circle</mat-icon> -->
       <mat-form-field >
         <input
           matInput
@@ -33,7 +28,6 @@
 
 
     <div class="alb-textfield">
-      <!-- <mat-icon>account_circle</mat-icon> -->
       <mat-form-field >
         <input
           matInput
@@ -52,8 +46,6 @@
           placeholder="Password">
       <mat-icon matSuffix (click)="pswVisible = !pswVisible">{{pswVisible ? 'visibility_on' : 'visibility_off'}}</mat-icon>
       </mat-form-field>
-      <!-- TODO other VALIDATION ERRORs -->
-      <!-- <mat-error *ngIf="true" > Password troppo corta </mat-error> -->
       <mat-form-field  class="alb-textfield">
         <input
           matInput
@@ -75,9 +67,6 @@
           color="primary"
           routerLink="/login/signin"
           >Già registrato? Accedi
-          <!-- href="#" -->
-          <!-- (click)="changeStatus.emit()" -->
-          <!-- class="alb-link" -->
       </a>
       </p>
 

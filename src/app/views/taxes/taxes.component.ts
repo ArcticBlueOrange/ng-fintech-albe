@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'alb-taxes',
@@ -8,9 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TaxesComponent implements OnInit {
 
-  constructor() { }
+  f24Form = this.fb.group({
+    cf: ['', [Validators.required]],
+    surname: ['', Validators.required],
+    name: ['', Validators.required],
+    birthday: ['', Validators.required],
+    sex: ['', Validators.required],
+    prov: ['', Validators.required],
+    city: ['', Validators.required],
+  });
 
-  ngOnInit(): void {
-  }
+  constructor(private fb: FormBuilder) { }
+
+  ngOnInit(): void { }
+
+  onSubmit() {}
 
 }

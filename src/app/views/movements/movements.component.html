@@ -1,12 +1,12 @@
-<!-- {{rows$.value}} -->
 <mat-form-field
   style="width:100%;"
   >
   <mat-select placeholder="Choose a card"
+    [value]="selectedCardId$ | async"
     (valueChange)="onSelect($event)"
     >
   <mat-option
-    *ngFor="let card of cards$.value"
+    *ngFor="let card of cards$ | async"
     [value]="card._id"
     >
     {{card.type | titlecase}} - {{card.number | cardify}}
@@ -40,7 +40,3 @@
 </mat-accordion>
 
 <hr>
-
-<!-- <pre>
- {{ movements$ | async | json}}
-</pre> -->

@@ -1,6 +1,5 @@
 <mat-card
   >
-  <!-- class="alb-form" -->
   <form
     class="alb-flex"
     [formGroup]="form"
@@ -63,13 +62,6 @@
       *ngIf="form.errors?.['outOfMoney']">
       Non hai abbastanza denaro
     </mat-error>
-    <!-- <div>
-      {{form.get('cardId')?.errors | json}}
-    </div> -->
-    <!-- <div>
-      Form valido: {{form.valid}}
-      Form invalido: {{form.invalid}}
-    </div> -->
 
     <button
       mat-raised-button
