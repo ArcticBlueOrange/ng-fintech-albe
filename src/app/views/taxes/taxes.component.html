@@ -6,61 +6,211 @@
     (ngSubmit)="onSubmit()"
     >
 
-  <mat-form-field class="alb-textfield">
-    <mat-label>Codice Fiscale</mat-label>
-    <input
-      matInput
-      name="cf"
-      formControlName="cf"
+    <div
+      formGroupName="contribuente"
+      class="alb-flex"
       >
-  </mat-form-field>
+      <mat-form-field class="alb-textfield">
+        <mat-label>Codice Fiscale</mat-label>
+        <input
+          matInput
+          name="cf"
+          formControlName="cf"
+          >
+      </mat-form-field>
 
-  <mat-form-field class="alb-textfield">
-    <mat-label>Cognome</mat-label>
-    <input
-      matInput
-      name="surname"
-      formControlName="surname"
-      >
-  </mat-form-field>
+      <mat-form-field class="alb-textfield">
+        <mat-label>Cognome</mat-label>
+        <input
+          matInput
+          name="surname"
+          formControlName="surname"
+          >
+      </mat-form-field>
 
-  <mat-form-field class="alb-textfield">
-    <mat-label>Nome</mat-label>
-    <input
-      matInput
-      name="name"
-      formControlName="name"
-      >
-  </mat-form-field>
+      <mat-form-field class="alb-textfield">
+        <mat-label>Nome</mat-label>
+        <input
+          matInput
+          name="name"
+          formControlName="name"
+          >
+      </mat-form-field>
 
-  <mat-form-field>
-    <mat-label>Data di Nascita</mat-label>
-    <input
-      matInput
-      [matDatepicker]="birthday"
-      formControlName="birthday"
-      >
-      <mat-datepicker-toggle matSuffix [for]="birthday"></mat-datepicker-toggle>
-      <mat-datepicker #birthday></mat-datepicker>
-  </mat-form-field>
+      <mat-form-field>
+        <mat-label>Data di Nascita</mat-label>
+        <input
+          matInput
+          [matDatepicker]="birthday"
+          formControlName="birthday"
+          >
+          <mat-datepicker-toggle matSuffix [for]="birthday"></mat-datepicker-toggle>
+          <mat-datepicker #birthday></mat-datepicker>
+      </mat-form-field>
 
-  <mat-form-field>
-    <mat-label>Sesso</mat-label>
-    <mat-select>
-      <mat-option value="male">Uomo</mat-option>
-      <mat-option value="female">Donna</mat-option>
-    </mat-select>
-  </mat-form-field>
+      <mat-form-field>
+        <mat-label>Sesso</mat-label>
+        <mat-select
+          matInput
+          formControlName="sex"
+          >
+          <mat-option value="male">Uomo</mat-option>
+          <mat-option value="female">Donna</mat-option>
+        </mat-select>
+      </mat-form-field>
 
-  <!-- province and city selectors -->
+      <!-- province and city selectors -->
+      <!-- <mat-form-field>
+        <mat-label Provincia>
+        </mat-label>
+      </mat-form-field> -->
+
+    </div>
+
+    <hr>
+
+    <div formArrayName="erario">
+      <h3> Erario </h3>
+
+      <div *ngFor="let er of erario.controls; let i = index"
+        formGroupName="{{i}}"
+        style="display: flex; justify-content: space-around; width: 100%;"
+        >
+        <mat-form-field>
+          <mat-label>Codice Tributo</mat-label>
+          <input
+            matInput
+            formControlName="codice">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Anno</mat-label>
+          <input
+            matInput
+            formControlName="anno">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Debito</mat-label>
+          <input
+            matInput
+            formControlName="debito">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Credito</mat-label>
+          <input
+            matInput
+            formControlName="credito">
+        </mat-form-field>
+        <button
+          mat-mini-fab
+          color="warn"
+          type="button"
+          (click)="erario.removeAt(i)"
+          ><mat-icon>delete</mat-icon></button>
+
+      </div>
+
+      <button
+        mat-mini-fab
+        color="primary"
+        type="button"
+        (click)="addErarioForm()">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+
+    <hr>
+
+      <div formArrayName="inps">
+        <h3> INPS </h3>
+        <div *ngFor="let er of inps.controls; let i = index"
+          formGroupName="{{i}}"
+          style="display: flex; justify-content: space-around; width: 100%;"
+          >
+          <mat-form-field>
+            <mat-label>Codice Sede</mat-label>
+            <input
+              matInput
+              formControlName="idSede">
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Causale</mat-label>
+            <input
+              matInput
+              formControlName="causale">
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>codice inps</mat-label>
+            <input
+              matInput
+              formControlName="idInps">
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Da</mat-label>
+            <input
+              matInput
+              [matDatepicker]="da"
+              formControlName="da">
+            <mat-datepicker-toggle matSuffix [for]="da"></mat-datepicker-toggle>
+            <mat-datepicker #da></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>A</mat-label>
+            <input
+              matInput
+              [matDatepicker]="a"
+              formControlName="a">
+            <mat-datepicker-toggle matSuffix [for]="a"></mat-datepicker-toggle>
+            <mat-datepicker #a></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Credito</mat-label>
+            <input
+              matInput
+              formControlName="credito">
+          </mat-form-field>
+
+          <mat-form-field >
+            <mat-label>Debito</mat-label>
+            <input
+              matInput
+              formControlName="debito">
+          </mat-form-field>
+
+        <button
+          mat-mini-fab
+          color="warn"
+          type="button"
+          (click)="inps.removeAt(i)"
+          ><mat-icon>delete</mat-icon></button>
+
+        </div>
+        <button
+          mat-mini-fab
+          color="primary"
+          type="button"
+          (click)="addInpsForm()"
+          >
+          <mat-icon>add</mat-icon>
+        </button>
+    </div>
+
+    <hr>
 
     <button
       mat-raised-button
       color="primary"
       type="submit"
-      [disabled]="!f24Form.valid"
+      [disabled]="f24Form.invalid"
+      (click)="onSubmit()"
       >Lancia</button>
 
   </form>
 
 </mat-card>
+
+<pre> {{f24Form.value | json}} </pre>
