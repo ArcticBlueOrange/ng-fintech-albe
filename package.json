@@ -10,7 +10,7 @@
     "heroku-postbuild": "ng build"
   },
   "engines": {
-    "node": "v16.14.2",
+    "node": "16.14.2",
     "npm": "8.6.0"
   },
   "private": true,
